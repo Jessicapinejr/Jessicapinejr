@@ -1,0 +1,3515 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Animation Portfolio</title>
+  <style>
+    :root {
+      --pink-50: #fff6f5; --pink-100: #fce8e6; --rose-ink: #c97a75;
+      --sage: #f5d5d2; --sage-deep: #8c7270; --cream: #fffdfd;
+      --ink: #4a3a39; --muted: #735d5b; --line: rgba(226, 154, 149, 0.18);
+      --shadow: 0 10px 30px rgba(226, 154, 149, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--pink-50); font-family: "Quicksand", "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif; line-height: 1.65; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px clamp(18px, 4vw, 56px); border-bottom: 1px solid rgba(226, 154, 149, 0.15); background: rgba(255, 246, 245, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .brand { font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif; font-size: 16px; font-weight: 800; color: var(--rose-ink); white-space: nowrap; letter-spacing: 0.08em; }
+    .nav { display: flex; align-items: center; justify-content: flex-end; gap: 16px; flex-wrap: wrap; font-size: 12px; font-weight: 700; color: var(--sage-deep); text-transform: uppercase; letter-spacing: 0.08em; }
+    .nav a { padding: 7px 10px; border-radius: 999px; transition: all 0.28s ease; }
+    .nav a:hover { background: var(--pink-100); color: var(--rose-ink); }
+    .hero { position: relative; min-height: 100vh; display: grid; align-items: center; text-align: center; padding: clamp(92px, 11vw, 132px) clamp(20px, 7vw, 92px) 70px; background: radial-gradient(circle at 18% 14%, rgba(255, 234, 231, 0.96), transparent 34%), radial-gradient(circle at 86% 80%, rgba(255, 240, 238, 0.88), transparent 38%), #fff6f5; }
+    .hero::before { content: "Storytelling Animator"; position: absolute; top: 92px; left: clamp(22px, 4vw, 56px); color: #d98f97; font-family: "Fredoka", "Cooper Black", "Cooper Std Black", "Arial Rounded MT Bold", "Microsoft YaHei UI", sans-serif; font-size: clamp(22px, 2.7vw, 42px); font-weight: 900; -webkit-text-stroke: 0.6px rgba(122, 74, 82, 0.4); text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 3px 3px 5px rgba(186, 114, 110, 0.34); }
+    .hero-inner { max-width: 1040px; width: 100%; margin: 0 auto; }
+    .hello { margin: 0 auto 28px; color: #e29a95; font-family: "Fredoka", "Cooper Black", "Cooper Std Black", "Arial Rounded MT Bold", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif; font-size: clamp(42px, 7.2vw, 92px); font-weight: 900; line-height: 1.06; -webkit-text-stroke: 0.8px rgba(186, 114, 110, 0.46); text-shadow: 2px 2px 0 #fff, -2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 4px 4px 6px rgba(186, 114, 110, 0.4); letter-spacing: 0.03em; }
+    .hero-grid { display: grid; justify-items: center; gap: 18px; align-items: center; }
+    .intro-line { max-width: 760px; margin: 0; font-size: 13px; color: var(--sage-deep); text-transform: uppercase; letter-spacing: 0.22em; }
+    .profile-note { max-width: 640px; border: 1px solid rgba(226, 154, 149, 0.18); border-radius: 999px; padding: 10px 18px; color: var(--sage-deep); background: rgba(255, 253, 253, 0.58); font-size: 14px; }
+    section { scroll-margin-top: 78px; padding: clamp(64px, 8vw, 96px) clamp(20px, 7vw, 92px); }
+    .band-pink { background: #fcf0ee; } .band-sage { background: #fff6f5; } .band-cream { background: var(--pink-50); }
+    .wrap { max-width: 1120px; margin: 0 auto; }
+    .section-head { display: grid; grid-template-columns: minmax(0, 0.52fr) minmax(0, 1fr); gap: 28px; align-items: end; margin-bottom: 36px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 10px; color: var(--rose-ink); background: var(--pink-100); border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+    .eyebrow::before { content: none; }
+    h2 { margin: 0; color: #423433; font-family: "Noto Serif SC", "Songti SC", "SimSun", "Microsoft YaHei UI", serif; font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 1.2; letter-spacing: 0; }
+    h3 { margin: 0 0 12px; color: var(--rose-ink); font-size: clamp(21px, 3vw, 32px); font-weight: 800; line-height: 1.24; letter-spacing: 0; }
+    h4 { margin: 0 0 8px; color: var(--sage-deep); font-size: 15px; }
+    p { margin: 0 0 14px; } .lead { color: var(--muted); font-size: clamp(16px, 1.6vw, 18px); }
+    .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr) minmax(220px, 0.55fr); gap: 22px; align-items: start; }
+    .soft-panel, .mini-card, .project-page, .writing-piece, .project-link { border: 1px solid #f5e1df; border-radius: 16px; background: rgba(255, 255, 255, 0.78); box-shadow: var(--shadow); }
+    .soft-panel { padding: clamp(22px, 4vw, 34px); }
+    .info-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
+    .mini-card { padding: 16px; min-height: 116px; } .mini-card strong { display: block; margin-bottom: 6px; color: var(--rose-ink); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .tag { border: 1px solid rgba(95, 118, 105, 0.26); border-radius: 999px; padding: 6px 10px; background: rgba(255, 250, 242, 0.72); color: var(--sage-deep); font-size: 13px; }
+    .project-index { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 20px 0 42px; }
+    .project-link { min-height: 150px; padding: 18px; transition: transform 0.28s ease, box-shadow 0.28s ease; } .project-link:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(226, 154, 149, 0.14); } .project-link span { display: block; margin-top: 36px; color: var(--muted); font-size: 14px; }
+    .project-stack, .project { display: grid; gap: 22px; }
+    .project-title { display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr); gap: 24px; align-items: end; padding: 30px 0 0; border-top: 1px solid #f5e1df; }
+    .project-title p { color: var(--muted); font-size: 16px; }
+  .project-pages {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 42px;
+}
+   .project-page {
+  overflow: hidden;
+  min-height: 82vh;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.8fr) minmax(320px, 1.2fr);
+  gap: 28px;
+  align-items: stretch;
+}
+    .project-page .text { padding: 18px 18px 8px; }
+    .page-num { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-bottom: 14px; border-radius: 999px; background: var(--pink-100); color: var(--rose-ink); font-size: 13px; font-weight: 700; }
+    .visual-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 18px;
+  align-content: stretch;
+}
+    .visual { min-height: 120px; border: 1px dashed #f5d5d2; border-radius: 12px; background-image: radial-gradient(#f5d5d2 10%, transparent 10%); background-size: 20px 20px; background-color: #fffdfd; display: grid; place-items: center; padding: 12px; color: #b59997; font-size: 13px; text-align: center; }
+    .visual.wide { grid-column: 1 / -1; min-height: 150px; }
+    .skills-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+    .metric-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+    .metric { padding: 16px; border-radius: 8px; background: rgba(255, 244, 245, 0.72); border: 1px solid var(--line); }
+    .metric strong { display: block; color: var(--rose-ink); font-size: 28px; line-height: 1; margin-bottom: 8px; }
+    .writing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .writing-piece { padding: 20px; min-height: 250px; }
+    blockquote { margin: 0; color: var(--rose-ink); font-family: "Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", sans-serif; font-size: 20px; font-weight: 600; line-height: 1.65; }
+    .footer { padding: 36px clamp(20px, 7vw, 92px); background: var(--rose-ink); color: #fff6f7; }
+    .footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: center; }
+    .contact { display: flex; flex-wrap: wrap; gap: 10px; font-size: 14px; } .contact span { border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 999px; padding: 7px 11px; }
+    @media (max-width: 900px) { .hero-grid, .section-head, .about-grid, .project-title, .skills-grid, .project-index, .project-pages, .writing-grid { grid-template-columns: 1fr; } .project-page { min-height: auto; } }
+
+
+    .article-snapshot-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .article-snapshot-grid .media-card {
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .article-snapshot-grid .image-placeholder {
+      min-height: 118px;
+      aspect-ratio: 16 / 10;
+    }
+
+    .article-snapshot-grid .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      min-height: 0 !important;
+      aspect-ratio: 16 / 10;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .article-snapshot-grid .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .article-snapshot-grid figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+      text-align: center;
+    }
+  
+    .script-snapshot-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .script-snapshot-grid .media-card {
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .script-snapshot-grid .image-placeholder {
+      min-height: 120px;
+      aspect-ratio: 16 / 10;
+    }
+
+    .script-snapshot-grid .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      min-height: 0 !important;
+      aspect-ratio: 16 / 10;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .script-snapshot-grid .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .script-snapshot-grid figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+      text-align: center;
+    }
+  
+    /* Writing audience response cards */
+    .writing-piece h4 {
+      margin: 0 0 14px;
+      color: var(--rose-ink);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .writing-note {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .comment-snapshot-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .comment-snapshot-grid .media-card {
+      margin: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .comment-snapshot-grid .image-placeholder {
+      min-height: 92px;
+      aspect-ratio: 4 / 3;
+      font-size: 13px;
+    }
+
+    .comment-snapshot-grid .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      min-height: 0 !important;
+      aspect-ratio: 4 / 3;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .comment-snapshot-grid .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .comment-snapshot-grid figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .comment-snapshot-grid {
+        grid-template-columns: 1fr;
+      }
+    }    @media (max-width: 620px) { .topbar { align-items: flex-start; flex-direction: column; } .nav { justify-content: flex-start; } .info-list, .metric-row { grid-template-columns: 1fr; } .hello { font-size: 48px; } }
+  
+
+    /* About distinction highlight */
+    .about-distinction-card {
+      margin: 24px 0 0;
+      border: 1px solid #f5e1df;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      padding: clamp(14px, 2vw, 20px);
+    }
+
+    .about-distinction-card .about-distinction-image {
+      aspect-ratio: 869 / 489;
+      min-height: 0;
+    }
+
+    .about-distinction-card .about-distinction-image:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 869 / 489;
+      min-height: 0 !important;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .about-distinction-card .about-distinction-image img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+      display: block !important;
+    }
+
+    .about-distinction-card figcaption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: center;
+    }
+  
+
+    /* Closing summary */
+    .summary-section .section-head {
+      margin-bottom: 22px;
+    }
+
+    .summary-panel {
+      max-width: 980px;
+      margin: 0 auto;
+      border: 1px solid #f5e1df;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 38px);
+    }
+
+    .summary-panel p {
+      margin: 0 0 18px;
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .summary-panel p:last-child {
+      margin-bottom: 0;
+      color: var(--rose-ink);
+      font-weight: 700;
+    }
+  
+    /* FAT case study layout */
+    .case-study { display: grid; gap: 34px; }
+    .case-block { border: 1px solid #f5e1df; border-radius: 18px; background: rgba(255, 255, 255, 0.78); box-shadow: var(--shadow); padding: clamp(22px, 4vw, 38px); }
+    .case-hero { display: grid; grid-template-columns: minmax(260px, 0.62fr) minmax(380px, 1.38fr); gap: clamp(24px, 5vw, 48px); align-items: stretch; }
+    .case-title { margin-bottom: 16px; }
+    .case-meta { display: grid; gap: 8px; margin: 18px 0 22px; color: var(--sage-deep); font-size: 14px; }
+    .case-meta strong { color: var(--rose-ink); }
+    .case-copy { color: var(--muted); font-size: 15px; line-height: 1.85; }
+    .case-hero .case-copy { align-self: stretch; border: 1px solid #f5e1df; border-radius: 16px; background: rgba(255, 253, 253, 0.68); padding: 18px; }
+    .case-copy.compact { align-self: stretch; border: 1px solid #f5e1df; border-radius: 16px; background: rgba(255, 253, 253, 0.68); padding: 18px; }
+    .case-copy.compact p { margin-bottom: 10px; font-size: 14px; line-height: 1.72; }
+    .case-copy p { margin-bottom: 12px; }
+    .case-section-title { margin-bottom: 18px; color: #423433; }
+    .case-kicker { display: inline-flex; margin-bottom: 12px; border-radius: 999px; padding: 5px 12px; background: var(--pink-100); color: var(--rose-ink); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .image-placeholder { min-height: 220px; border: 1px dashed #f5d5d2; border-radius: 14px; background-image: radial-gradient(#f5d5d2 10%, transparent 10%); background-size: 20px 20px; background-color: #fffdfd; display: grid; place-items: center; padding: 18px; color: #b59997; text-align: center; font-size: 13px; }
+    .image-placeholder.large { min-height: 500px; }
+    .image-placeholder.tall { min-height: 300px; }
+    .image-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+    .case-split { display: grid; grid-template-columns: minmax(260px, 0.62fr) minmax(380px, 1.38fr); gap: 24px; align-items: stretch; }
+    .case-split .image-grid-3 { margin-top: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); height: 100%; }
+    .case-split .image-grid-3 .image-placeholder { min-height: 230px; }
+    .case-split .image-grid-3 .feature { grid-column: 1 / -1; min-height: 280px; }
+    .character-grid { display: grid; gap: 18px; }
+    .character-card { display: grid; grid-template-columns: minmax(220px, 0.58fr) minmax(360px, 1.42fr); gap: 20px; align-items: stretch; border: 1px solid #f5e1df; border-radius: 16px; background: rgba(255, 253, 253, 0.72); padding: 18px; }
+    .character-card h4 { color: var(--rose-ink); font-size: 18px; margin-bottom: 10px; }
+    .character-card .case-copy { border: 1px solid rgba(245, 213, 210, 0.76); border-radius: 14px; background: rgba(255, 246, 245, 0.42); padding: 14px; font-size: 14px; line-height: 1.72; }
+    .character-visuals { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .character-visuals .image-placeholder { min-height: 260px; }
+    .character-visuals .wide { grid-column: 1 / -1; }
+    .still-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+    .still-card { display: grid; gap: 8px; }
+    .still-card .image-placeholder { min-height: 170px; }
+    .still-caption { color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .case-reflection { margin-top: 22px; padding: 18px 20px; border-left: 4px solid var(--rose-ink); border-radius: 14px; background: rgba(252, 232, 230, 0.42); color: #735d5b; font-weight: 700; }
+    .project:not(.case-study) .project-pages { grid-template-columns: 1fr; gap: 42px; }
+    .project:not(.case-study) .project-page { min-height: 76vh; display: grid; grid-template-columns: minmax(260px, 0.82fr) minmax(320px, 1.18fr); gap: 24px; align-items: stretch; }
+    .project:not(.case-study) .visual-grid { margin-top: 0; padding: 18px; gap: 14px; }
+    @media (max-width: 900px) { .case-hero, .case-split, .character-card, .project:not(.case-study) .project-page { grid-template-columns: 1fr; min-height: auto; } .image-grid-3, .case-split .image-grid-3, .still-grid { grid-template-columns: 1fr; } .image-placeholder.large { min-height: 260px; } }
+    @media (max-width: 620px) { .character-visuals { grid-template-columns: 1fr; } }
+  
+    /* Additional project and skills showcase layout */
+    .overview-visuals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 0; }
+    .overview-visuals .main { grid-column: 1 / -1; min-height: 430px; }
+    .process-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+    .process-grid .wide { grid-column: span 2; }
+    .skills-showcase { display: grid; gap: 24px; }
+    .skill-section { border: 1px solid #f5e1df; border-radius: 18px; background: rgba(255, 255, 255, 0.78); box-shadow: var(--shadow); padding: clamp(22px, 4vw, 34px); }
+    .skill-section-head { display: grid; grid-template-columns: minmax(220px, 0.55fr) minmax(320px, 1fr); gap: 22px; align-items: end; margin-bottom: 20px; }
+    .skill-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .skill-card { display: grid; gap: 10px; border: 1px solid #f5e1df; border-radius: 16px; background: rgba(255, 253, 253, 0.74); padding: 14px; }
+    .skill-card .image-placeholder { min-height: 220px; }
+    .skill-card strong { color: var(--rose-ink); font-size: 15px; }
+    .fan-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .fan-grid .image-placeholder { min-height: 210px; }
+    .ability-metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+    .ability-metrics .metric { min-height: 112px; display: grid; align-content: center; }
+    @media (max-width: 900px) { .overview-visuals, .process-grid, .skill-section-head, .skill-card-grid, .fan-grid, .ability-metrics { grid-template-columns: 1fr; } .overview-visuals .main, .process-grid .wide { grid-column: auto; } }
+  
+    /* Large design pages and media embeds */
+    .work-img,
+    .work-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+      border: 1px solid #f5d5d2;
+      background: #fffdfd;
+    }
+    .work-video {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+    .design-showcase {
+      display: grid;
+      gap: 30px;
+    }
+    .design-page {
+      border: 1px solid #f5e1df;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 3vw, 28px);
+    }
+    .design-page h4 {
+      margin: 0 0 14px;
+      color: var(--rose-ink);
+      font-size: 18px;
+    }
+    .a4-wide-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .a4-wide-grid .image-placeholder {
+      aspect-ratio: 1.414 / 1;
+      min-height: 360px;
+    }
+    .big-design {
+      aspect-ratio: 16 / 9;
+      min-height: 430px;
+    }
+    @media (max-width: 700px) {
+      .a4-wide-grid .image-placeholder,
+      .big-design {
+        min-height: 240px;
+      }
+    }
+  
+    /* Personal works clean grid */
+    .personal-works {
+      display: grid;
+      gap: 24px;
+    }
+
+    .personal-feature {
+      display: grid;
+      grid-template-columns: minmax(230px, 0.72fr) minmax(340px, 1.28fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .personal-copy {
+      border: 1px solid rgba(245, 213, 210, 0.76);
+      border-radius: 16px;
+      background: rgba(255, 246, 245, 0.48);
+      padding: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .personal-copy h4,
+    .personal-group h4 {
+      margin: 0 0 10px;
+      color: var(--rose-ink);
+      font-size: 17px;
+      line-height: 1.35;
+    }
+
+    .personal-copy p {
+      margin: 0;
+    }
+
+    .personal-cover {
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .personal-cover .image-placeholder {
+      min-height: 260px;
+      aspect-ratio: 4 / 3;
+    }
+
+    .personal-group {
+      display: grid;
+      gap: 14px;
+    }
+
+    .personal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .personal-grid .image-placeholder {
+      min-height: 190px;
+      aspect-ratio: 1 / 1;
+    }
+
+    .personal-works figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .personal-feature,
+      .personal-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .personal-feature,
+      .personal-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+
+    .personal-cover .image-placeholder:has(img),
+    .personal-grid .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .personal-cover .image-placeholder img,
+    .personal-grid .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 14px !important;
+    }
+
+    .general-compact {
+      display: grid;
+      gap: 16px;
+    }
+
+    .ability-metrics.compact {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 0;
+    }
+
+    .ability-metrics.compact .metric {
+      min-height: 96px;
+    }
+
+    .compact-tags {
+      margin-top: 0;
+    }
+
+    @media (max-width: 900px) {
+      .ability-metrics.compact {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .ability-metrics.compact {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+
+    /* Personal works natural image ratios and compact data snapshots */
+    .personal-cover .image-placeholder:has(img),
+    .personal-grid .image-placeholder:has(img) {
+      display: block !important;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .personal-cover .image-placeholder img,
+    .personal-grid .image-placeholder img {
+      width: 100% !important;
+      height: auto !important;
+      display: block !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .personal-grid {
+      align-items: start;
+    }
+
+    .general-snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .general-snapshot-grid .media-card {
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .general-snapshot-grid .image-placeholder {
+      min-height: 150px;
+      aspect-ratio: 3 / 4;
+    }
+
+    .general-snapshot-grid .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      min-height: 0 !important;
+      aspect-ratio: 3 / 4;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .general-snapshot-grid .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .general-snapshot-grid figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .general-snapshot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+    /* Text plus image layout for design skills */
+    .design-row {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.52fr) minmax(360px, 1.48fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+    .design-text {
+      border: 1px solid rgba(245, 213, 210, 0.76);
+      border-radius: 16px;
+      background: rgba(255, 246, 245, 0.48);
+      padding: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+    .design-text h4 {
+      margin: 0 0 10px;
+      color: var(--rose-ink);
+      font-size: 18px;
+    }
+    .design-media .image-placeholder {
+      min-height: 430px;
+    }
+    .design-media .a4-page {
+      aspect-ratio: 1.414 / 1;
+      min-height: 430px;
+    }
+    @media (max-width: 900px) {
+      .design-row { grid-template-columns: 1fr; }
+      .design-media .image-placeholder,
+      .design-media .a4-page { min-height: 260px; }
+    }
+  
+    /* About photo card */
+    .about-photo-card {
+      border: 1px solid #f5e1df;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      align-self: start;
+    }
+    .about-photo {
+      aspect-ratio: 3 / 4;
+      min-height: 360px;
+      border: 1px dashed #f5d5d2;
+      border-radius: 14px;
+      background-image: radial-gradient(#f5d5d2 10%, transparent 10%);
+      background-size: 20px 20px;
+      background-color: #fffdfd;
+      display: grid;
+      place-items: center;
+      padding: 18px;
+      color: #b59997;
+      text-align: center;
+      font-size: 13px;
+      overflow: hidden;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .about-photo-note {
+      margin-top: 12px;
+      color: var(--sage-deep);
+      font-size: 13px;
+      text-align: center;
+    }
+  
+    /* Larger FAT character design image grids */
+    .character-visuals-large {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      min-height: 520px;
+    }
+    .character-visuals-large .image-placeholder {
+      min-height: 250px;
+    }
+    .character-visuals-large .main-reference {
+      grid-row: span 2;
+      min-height: 520px;
+    }
+    @media (max-width: 900px) {
+      .character-visuals-large { grid-template-columns: 1fr; min-height: auto; }
+      .character-visuals-large .main-reference { grid-row: auto; min-height: 300px; }
+    }
+  
+    /* Click-to-enlarge lightbox */
+    .image-placeholder,
+    main img,
+    .work-img {
+      cursor: zoom-in;
+    }
+    .portfolio-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(18px, 4vw, 48px);
+      background: rgba(74, 58, 57, 0.48);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .portfolio-lightbox.is-open {
+      display: flex;
+    }
+    .portfolio-lightbox-panel {
+      position: relative;
+      width: min(1120px, 94vw);
+      max-height: 90vh;
+      border: 1px solid rgba(245, 213, 210, 0.9);
+      border-radius: 22px;
+      background: #fffdfd;
+      box-shadow: 0 24px 80px rgba(74, 58, 57, 0.24);
+      padding: clamp(14px, 2vw, 22px);
+      overflow: auto;
+    }
+    .portfolio-lightbox-content {
+      display: grid;
+      place-items: center;
+      min-height: 220px;
+    }
+    .portfolio-lightbox-content img,
+    .portfolio-lightbox-content video {
+      max-width: 100%;
+      max-height: 78vh;
+      border-radius: 16px;
+      border: 1px solid #f5d5d2;
+      object-fit: contain;
+      background: #fffdfd;
+    }
+    .portfolio-lightbox-placeholder {
+      width: min(920px, 86vw);
+      min-height: min(62vh, 580px);
+      border: 1px dashed #f5d5d2;
+      border-radius: 16px;
+      background-image: radial-gradient(#f5d5d2 10%, transparent 10%);
+      background-size: 20px 20px;
+      background-color: #fffdfd;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: #b59997;
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .portfolio-lightbox-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border: 1px solid #f5d5d2;
+      border-radius: 999px;
+      background: #fff6f5;
+      color: var(--rose-ink);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .portfolio-lightbox-caption {
+      margin: 12px 44px 0 4px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    body.lightbox-open {
+      overflow: hidden;
+    }
+  
+    /* Responsive media fitting */
+    .image-placeholder {
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+    .image-placeholder img,
+    .image-placeholder video {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+    .image-placeholder video {
+      background: #fffdfd;
+    }
+  
+    /* Media should appear as the artwork itself, not inside a placeholder frame. */
+    .image-placeholder:has(img),
+    .image-placeholder:has(video),
+    .about-photo:has(img) {
+      min-height: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+      padding: 0 !important;
+      display: block !important;
+      overflow: visible !important;
+      color: inherit;
+    }
+    .image-placeholder:has(img) img,
+    .image-placeholder:has(video) video,
+    .about-photo:has(img) img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 100%;
+      max-height: none;
+      object-fit: contain;
+      border-radius: 14px;
+    }
+  
+    /* Center project overview main stills */
+    .fat-main-visual,
+    .overview-main-visual {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .fat-main-visual .image-placeholder,
+    .overview-main-visual .image-placeholder {
+      width: min(100%, 860px);
+      margin: 0 auto;
+    }
+    .fat-main-visual img,
+    .overview-main-visual img {
+      margin: 0 auto;
+    }
+  
+    /* Image captions */
+    .media-figure {
+      margin: 0;
+    }
+    .media-figure figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .inspiration-images {
+      align-content: start;
+    }
+  
+    /* Keep image captions visible when image frames are removed */
+    .image-placeholder.media-figure:has(img),
+    .image-placeholder.media-figure:has(video) {
+      display: block !important;
+    }
+    .image-placeholder.media-figure figcaption {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+  
+    /* Character design images: two by two horizontal layout */
+    .character-visuals-large {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      gap: 18px !important;
+      min-height: 0 !important;
+      align-items: start !important;
+    }
+    .character-visuals-large .image-placeholder,
+    .character-visuals-large .main-reference {
+      grid-row: auto !important;
+      min-height: 220px !important;
+      width: 100% !important;
+    }
+    .character-visuals-large .media-figure:has(img),
+    .character-visuals-large .media-figure:has(video) {
+      min-height: 0 !important;
+    }
+    .character-visuals-large img,
+    .character-visuals-large video {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+    }
+    @media (max-width: 760px) {
+      .character-visuals-large {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  
+    /* FAT black-and-white process section */
+    .bw-process-images {
+      align-content: start;
+    }
+  
+    /* FAT story stills and concept art layout */
+    .story-gallery-group + .story-gallery-group {
+      margin-top: 34px;
+    }
+    .gallery-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    .gallery-head h4 {
+      margin: 0;
+      color: var(--rose-ink);
+      font-size: 18px;
+    }
+    .gallery-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+      text-align: right;
+      max-width: 420px;
+    }
+    .shot-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    .story-shot .image-placeholder {
+      aspect-ratio: 1920 / 1090;
+      min-height: 0 !important;
+    }
+    .concept-shot .image-placeholder {
+      aspect-ratio: 4096 / 1714;
+      min-height: 0 !important;
+    }
+    .story-stills-section .still-card {
+      margin: 0;
+    }
+    .story-stills-section figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    @media (max-width: 760px) {
+      .gallery-head {
+        display: block;
+      }
+      .gallery-head p {
+        text-align: left;
+        margin-top: 6px;
+      }
+      .shot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+    /* Strict sizing for FAT story stills and concept images */
+    .story-shot .image-placeholder:has(img),
+    .concept-shot .image-placeholder:has(img) {
+      display: block !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+    .story-shot .image-placeholder:has(img) {
+      aspect-ratio: 1920 / 1090 !important;
+    }
+    .concept-shot .image-placeholder:has(img) {
+      aspect-ratio: 4096 / 1714 !important;
+    }
+    .story-shot .image-placeholder img,
+    .concept-shot .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      display: block !important;
+      border-radius: 14px;
+    }
+  
+    /* Case meta links */
+    .case-meta a {
+      color: var(--rose-ink);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(205, 117, 113, 0.42);
+    }
+    .case-meta a:hover {
+      border-bottom-color: var(--rose-ink);
+    }
+  
+    /* Uniform image/GIF slots for character and balloon design */
+    .character-visuals-large .media-figure:has(img) {
+      display: flex !important;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .character-visuals-large .media-figure:has(img) img {
+      width: 100% !important;
+      aspect-ratio: 16 / 10 !important;
+      height: auto !important;
+      object-fit: contain !important;
+      border-radius: 14px;
+      background: transparent;
+    }
+    .character-visuals-large .media-figure figcaption {
+      margin-top: 0 !important;
+    }
+  
+    /* FAT black-and-white decision layout */
+    .bw-decision-layout {
+      grid-template-columns: minmax(260px, 0.72fr) minmax(420px, 1.28fr);
+      align-items: start;
+    }
+    .decision-points {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .decision-points div {
+      border-left: 3px solid rgba(205, 117, 113, 0.45);
+      padding: 8px 0 8px 12px;
+      background: rgba(255, 246, 245, 0.55);
+      border-radius: 0 12px 12px 0;
+    }
+    .decision-points strong {
+      display: block;
+      color: var(--rose-ink);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+    }
+    .decision-points span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .bw-process-images {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+    .bw-step {
+      min-height: 230px;
+    }
+    .bw-step figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    @media (max-width: 900px) {
+      .bw-decision-layout,
+      .bw-process-images {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+    /* Uniform black-and-white process media */
+    .bw-step:has(img) {
+      display: flex !important;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0 !important;
+    }
+    .bw-step:has(img) img {
+      width: 100% !important;
+      aspect-ratio: 16 / 10 !important;
+      height: auto !important;
+      object-fit: contain !important;
+      border-radius: 14px;
+      display: block;
+    }
+    .bw-step:has(img) figcaption {
+      margin-top: 0 !important;
+    }
+  
+    /* Four GIF result grid for the black-and-white process */
+    .bw-process-gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+    .bw-result-panel {
+      grid-column: 1 / -1;
+    }
+    .bw-result-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin: 6px 0 14px;
+    }
+    .bw-result-head strong {
+      color: var(--rose-ink);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .bw-result-head span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: right;
+      max-width: 420px;
+    }
+    .bw-result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .bw-result-gif:has(img) {
+      display: flex !important;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 0 !important;
+    }
+    .bw-result-gif:has(img) img {
+      width: 100% !important;
+      aspect-ratio: 16 / 10 !important;
+      height: auto !important;
+      object-fit: contain !important;
+      border-radius: 14px;
+      display: block;
+    }
+    .bw-result-gif:has(img) figcaption {
+      margin-top: 0 !important;
+    }
+    @media (max-width: 760px) {
+      .bw-process-gallery,
+      .bw-result-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .bw-result-head {
+        display: block;
+      }
+      .bw-result-head span {
+        display: block;
+        margin-top: 5px;
+        text-align: left;
+      }
+    }
+    /* Streamlined supporting project layout */
+    .streamlined-case { gap: 26px; }
+
+    .support-overview {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.7fr) minmax(380px, 1.3fr);
+      gap: clamp(24px, 4vw, 46px);
+      align-items: center;
+    }
+
+    .support-copy { max-width: 560px; }
+
+    .support-line {
+      margin: 16px 0 18px;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .support-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .support-facts span {
+      border: 1px solid #f4d6d3;
+      border-radius: 999px;
+      background: #fff8f7;
+      color: #9b6f6c;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .value-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+    }
+
+    .value-list div {
+      display: grid;
+      gap: 4px;
+      padding: 12px 14px;
+      border-left: 4px solid #e6aaa5;
+      border-radius: 12px;
+      background: #fff7f6;
+    }
+
+    .value-list dt {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .value-list dd {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .support-visuals,
+    .support-mini-strip,
+    .flow-row,
+    .clean-stills {
+      display: grid;
+      gap: 14px;
+    }
+
+    .support-mini-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .section-line-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 18px;
+    }
+
+    .section-line-head p {
+      max-width: 360px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    .flow-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .flow-step {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      padding: 14px;
+      border: 1px solid #f5e1df;
+      border-radius: 16px;
+      background: rgba(255, 250, 249, 0.78);
+    }
+
+    .flow-step strong {
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .flow-step p {
+      min-height: 68px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .clean-stills { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .streamlined-case .media-card { margin: 0; display: grid; gap: 8px; }
+
+    .streamlined-case .media-card figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    .streamlined-case .image-placeholder {
+      aspect-ratio: 16 / 9;
+      min-height: 0;
+    }
+
+    .streamlined-case .main-media .image-placeholder {
+      aspect-ratio: 16 / 9;
+    }
+
+    .project-reflection {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #fff5f4;
+      color: #8b6461;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 980px) {
+      .support-overview { grid-template-columns: 1fr; }
+      .flow-row,
+      .clean-stills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .section-line-head { display: grid; }
+      .section-line-head p { text-align: left; max-width: none; }
+    }
+
+    @media (max-width: 620px) {
+      .support-mini-strip,
+      .flow-row,
+      .clean-stills { grid-template-columns: 1fr; }
+    }
+  
+    /* Annoying Likes media polish */
+    #likes .likes-main-visual {
+      justify-content: center;
+      align-items: center;
+    }
+
+    #likes .likes-main-visual .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      width: min(100%, 720px) !important;
+      aspect-ratio: 4 / 3;
+      overflow: hidden !important;
+      border-radius: 18px !important;
+      background: #fff8f7 !important;
+      box-shadow: 0 16px 38px rgba(134, 93, 91, 0.12);
+      padding: 0 !important;
+      margin: 0 auto;
+    }
+
+    #likes .likes-main-visual .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 18px !important;
+    }
+
+    #likes .flow-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    #likes .flow-step p {
+      min-height: auto;
+    }
+
+    #likes .flow-step .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 16 / 9;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    #likes .flow-step .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    #likes .storyboard-step {
+      grid-column: 1 / -1;
+    }
+
+    #likes .storyboard-step .image-placeholder:has(img) {
+      aspect-ratio: 2537 / 703;
+    }
+
+    @media (max-width: 980px) {
+      #likes .flow-row {
+        grid-template-columns: 1fr;
+      }
+      #likes .storyboard-step {
+        grid-column: auto;
+      }
+    }
+  
+    /* Annoying Likes final GIF grid */
+    #likes .final-step {
+      grid-column: 1 / -1;
+    }
+
+    #likes .final-step p {
+      max-width: 760px;
+    }
+
+    #likes .final-gif-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    #likes .final-gif-grid .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 4 / 3;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    #likes .final-gif-grid .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 14px !important;
+    }
+
+    @media (max-width: 980px) {
+      #likes .final-gif-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      #likes .final-gif-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+    /* Dream Girl main visual polish */
+    #dream .dream-main-visual .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      width: min(100%, 820px) !important;
+      overflow: hidden !important;
+      border-radius: 18px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+      margin: 0 auto;
+      box-shadow: 0 16px 38px rgba(134, 93, 91, 0.12);
+    }
+
+    #dream .dream-main-visual .image-placeholder img {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+      border-radius: 18px !important;
+    }
+  
+    /* Dream Girl selected GIFs */
+    #dream .dream-stills .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 16 / 9;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    #dream .dream-stills .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: 14px !important;
+    }
+  
+    /* Dream Girl process layout polish */
+    #dream .flow-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    #dream .flow-step {
+      min-height: 0;
+    }
+
+    #dream .flow-step p {
+      min-height: auto;
+    }
+
+    #dream .flow-step .image-placeholder {
+      aspect-ratio: 16 / 9;
+      min-height: 0;
+    }
+
+    #dream .flow-step .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 16 / 9;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    #dream .flow-step .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    @media (max-width: 980px) {
+      #dream .flow-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  
+    /* Dream Girl three-step process polish */
+    #dream .dream-flow-row {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    #dream .dream-flow-row .flow-step {
+      min-height: 0;
+    }
+
+    #dream .dream-flow-row .flow-step p {
+      min-height: 78px;
+    }
+
+    #dream .dream-flow-row .image-placeholder,
+    #dream .dream-visual-pair .image-placeholder {
+      aspect-ratio: 16 / 9;
+      min-height: 0;
+    }
+
+    #dream .dream-flow-row .image-placeholder:has(img),
+    #dream .dream-visual-pair .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 16 / 9;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    #dream .dream-flow-row .image-placeholder img,
+    #dream .dream-visual-pair .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    #dream .dream-visual-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 980px) {
+      #dream .dream-flow-row {
+        grid-template-columns: 1fr;
+      }
+      #dream .dream-flow-row .flow-step p {
+        min-height: auto;
+      }
+    }
+    /* FAT post-production layout */
+    .fat-postproduction-section .fat-post-head {
+      margin-bottom: 22px;
+    }
+
+    .fat-postproduction-section .fat-post-head p {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+      text-align: left;
+    }
+
+    .compose-stack {
+      display: grid;
+      gap: 22px;
+    }
+
+    .compose-row {
+      display: grid;
+      grid-template-columns: minmax(230px, 0.78fr) minmax(360px, 1.22fr);
+      gap: 22px;
+      align-items: start;
+      padding-top: 20px;
+      border-top: 1px solid #f5e1df;
+    }
+
+    .compose-row:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .compose-copy {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .compose-copy h4 {
+      margin: 5px 0 8px;
+      color: var(--rose-ink);
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .compose-copy p {
+      margin: 0;
+    }
+
+    .compose-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 44px;
+      height: 26px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #fde8e8;
+      color: var(--rose);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .compose-media {
+      display: grid;
+      gap: 14px;
+    }
+
+    .compose-media.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .compose-media.single {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .compose-media .media-card {
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .compose-media .image-placeholder {
+      aspect-ratio: 16 / 9;
+      min-height: 0;
+    }
+
+    .compose-media .image-placeholder:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .compose-media .image-placeholder img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .compose-tools .image-placeholder {
+      max-width: 360px;
+      margin: 0 auto;
+      aspect-ratio: 429 / 462;
+    }
+
+    .compose-media figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .compose-row {
+        grid-template-columns: 1fr;
+      }
+
+      .compose-media.two {
+        grid-template-columns: 1fr;
+      }
+    }
+
+  
+    /* Other design expression sheets */
+    .expression-design-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .expression-design-grid .media-card {
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .expression-design-grid .expression-wide {
+      aspect-ratio: 2580 / 1079;
+      min-height: 0;
+    }
+
+    .expression-design-grid .expression-wide:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 2580 / 1079;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .expression-design-grid .expression-wide img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .expression-design-grid figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+    }
+    .design-media .media-card {
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .design-media .environment-design {
+      aspect-ratio: 4096 / 3428;
+      min-height: 0;
+    }
+
+    .design-media .environment-design:has(img) {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 4096 / 3428;
+      overflow: hidden !important;
+      border-radius: 14px !important;
+      background: #fff8f7 !important;
+      padding: 0 !important;
+    }
+
+    .design-media .environment-design img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .design-media figcaption {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+      text-align: center;
+    }
+    /* FAT learning summary */
+    .case-learning-summary {
+      margin-top: 26px;
+      border: 1px solid #f5e1df;
+      border-radius: 18px;
+      background: rgba(255, 246, 245, 0.62);
+      box-shadow: 0 12px 30px rgba(226, 154, 149, 0.10);
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    .case-learning-summary .learning-head {
+      margin-bottom: 14px;
+    }
+
+    .case-learning-summary .learning-head p {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .learning-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(260px, 0.92fr);
+      grid-auto-flow: dense;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .learning-card {
+      min-height: 142px;
+      border: 1px solid rgba(245, 213, 210, 0.9);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      padding: 14px 15px;
+    }
+
+    .learning-card strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--rose-ink);
+      font-size: 15px;
+    }
+
+    .learning-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .learning-feature {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(252, 232, 230, 0.92), rgba(255, 255, 255, 0.82));
+      border-color: rgba(221, 147, 143, 0.55);
+    }
+
+    .learning-feature strong {
+      font-size: 18px;
+    }
+
+    .learning-feature p {
+      font-size: 14px;
+      line-height: 1.78;
+    }
+
+    @media (max-width: 900px) {
+      .learning-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .learning-feature {
+        grid-column: 1 / -1;
+        grid-row: auto;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .learning-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* End FAT learning summary */
+
+    /* About rectangle mosaic */
+    .about-grid.about-grid-balanced {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(620px, 1.12fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .about-grid-balanced .about-intro-panel {
+      height: 100%;
+      padding: clamp(22px, 4vw, 34px);
+    }
+
+    .about-side-area {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(220px, 0.78fr);
+      grid-template-rows: minmax(0, 1fr) minmax(0, 1fr) auto;
+      gap: 12px;
+      align-self: stretch;
+      min-height: 100%;
+    }
+
+    .about-side-area .about-info-list,
+    .about-side-area .about-photo-stack {
+      display: contents;
+    }
+
+    .about-side-area .about-info-list .mini-card {
+      min-height: 0;
+      height: 100%;
+      padding: 14px;
+      line-height: 1.58;
+    }
+
+    .about-side-area .about-info-list .mini-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .about-side-area .about-info-list .mini-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .about-side-area .about-info-list .mini-card:nth-child(3) { grid-column: 1; grid-row: 2; }
+    .about-side-area .about-info-list .mini-card:nth-child(4) { grid-column: 2; grid-row: 2; }
+
+    .about-side-area .about-photo-card {
+      grid-column: 3;
+      grid-row: 1;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      height: 100%;
+      min-height: 0;
+      margin: 0;
+      padding: 12px;
+    }
+
+    .about-side-area .about-photo {
+      height: 100%;
+      min-height: 0;
+      aspect-ratio: auto;
+      padding: 0;
+    }
+
+    .about-side-area .about-photo img {
+      object-fit: cover;
+    }
+
+    .about-side-area .about-photo-note {
+      margin: 8px 0 0;
+      font-size: 12px;
+    }
+
+    .about-side-area .about-distinction-mini {
+      grid-column: 3;
+      grid-row: 2;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      height: 100%;
+      min-height: 0;
+      margin: 0;
+      padding: 12px;
+      border-radius: 16px;
+    }
+
+    .about-side-area .about-distinction-mini .about-distinction-image,
+    .about-side-area .about-distinction-mini .about-distinction-image:has(img) {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      aspect-ratio: auto !important;
+      padding: 0 !important;
+      border-radius: 12px !important;
+    }
+
+    .about-side-area .about-distinction-mini img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 12px !important;
+    }
+
+    .about-side-area .about-distinction-mini figcaption {
+      margin-top: 6px;
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .about-side-area .about-tag-strip {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      margin-top: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+      gap: 8px;
+      min-height: 62px;
+      border: 1px solid #f5e1df;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.66);
+      box-shadow: 0 10px 26px rgba(226, 154, 149, 0.08);
+      padding: 10px 12px;
+    }
+
+    .about-side-area .about-tag-strip .tag {
+      margin: 0;
+      padding: 5px 11px;
+      font-size: 12px;
+      line-height: 1.2;
+      background: rgba(255, 250, 242, 0.82);
+    }
+
+    @media (max-width: 1120px) {
+      .about-grid.about-grid-balanced {
+        grid-template-columns: 1fr;
+      }
+      .about-side-area {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(220px, 0.62fr);
+        min-height: 560px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .about-side-area {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        min-height: 0;
+      }
+      .about-side-area .about-info-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .about-side-area .about-info-list .mini-card,
+      .about-side-area .about-photo-card,
+      .about-side-area .about-distinction-mini,
+      .about-side-area .about-tag-strip {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+      }
+      .about-side-area .about-photo {
+        aspect-ratio: 3 / 4;
+      }
+      .about-side-area .about-distinction-mini .about-distinction-image,
+      .about-side-area .about-distinction-mini .about-distinction-image:has(img) {
+        aspect-ratio: 869 / 489 !important;
+        height: auto !important;
+      }
+    }
+    /* End about rectangle mosaic */
+  
+    /* Project switcher */
+    .project-index .project-link {
+      position: relative;
+    }
+
+    .project-index .project-link.is-active {
+      border-color: rgba(213, 123, 120, 0.48);
+      background: rgba(255, 246, 245, 0.92);
+      box-shadow: 0 16px 34px rgba(226, 154, 149, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .project-index .project-link.is-active::after {
+      content: "Now viewing";
+      position: absolute;
+      right: 14px;
+      bottom: 12px;
+      border-radius: 999px;
+      background: var(--pink-100);
+      color: var(--rose-ink);
+      padding: 4px 9px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .project-stack.project-filtered > .project {
+      display: none;
+    }
+
+    .project-stack.project-filtered > .project.is-active {
+      display: grid;
+    }
+    /* End project switcher */
+  
+    /* Project return button */
+    .project-return {
+      display: flex;
+      justify-content: center;
+      margin: 26px 0 4px;
+    }
+
+    .project-home-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid rgba(213, 123, 120, 0.34);
+      border-radius: 999px;
+      background: rgba(255, 246, 245, 0.86);
+      box-shadow: 0 10px 24px rgba(226, 154, 149, 0.10);
+      color: var(--rose-ink);
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+    }
+
+    .project-home-button:hover {
+      transform: translateY(-2px);
+      background: rgba(252, 232, 230, 0.96);
+      box-shadow: 0 14px 30px rgba(226, 154, 149, 0.16);
+    }
+    /* End project return button */
+  
+    /* Skills switcher v2 */
+    .skill-index {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin: 20px 0 34px;
+    }
+
+    .skill-link {
+      position: relative;
+      min-height: 132px;
+      border: 1px solid #f5e1df;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      text-decoration: none;
+      transition: transform 0.28s ease, box-shadow 0.28s ease, background 0.28s ease;
+    }
+
+    .skill-link:hover,
+    .skill-link.is-active {
+      transform: translateY(-2px);
+      border-color: rgba(213, 123, 120, 0.48);
+      background: rgba(255, 246, 245, 0.92);
+      box-shadow: 0 16px 34px rgba(226, 154, 149, 0.16);
+    }
+
+    .skill-link h3 {
+      margin: 0 0 24px;
+      font-size: clamp(20px, 2.4vw, 28px);
+    }
+
+    .skill-link span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .skill-link.is-active::after {
+      content: "Now viewing";
+      position: absolute;
+      right: 14px;
+      bottom: 12px;
+      border-radius: 999px;
+      background: var(--pink-100);
+      color: var(--rose-ink);
+      padding: 4px 9px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .skill-stack.skill-filtered > .skill-panel {
+      display: none;
+    }
+
+    .skill-stack.skill-filtered > .skill-panel.is-active {
+      display: grid;
+      gap: 22px;
+    }
+
+    .skill-return {
+      display: flex;
+      justify-content: center;
+      margin: 6px 0 2px;
+    }
+
+    .skill-home-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border: 1px solid rgba(213, 123, 120, 0.34);
+      border-radius: 999px;
+      background: rgba(255, 246, 245, 0.86);
+      box-shadow: 0 10px 24px rgba(226, 154, 149, 0.10);
+      color: var(--rose-ink);
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+
+    .personal-skill-section .skill-section-head {
+      grid-template-columns: minmax(160px, 0.34fr) minmax(320px, 1fr);
+      margin-bottom: 16px;
+    }
+
+    .rebuilt-personal {
+      display: grid;
+      gap: 18px;
+    }
+
+    .personal-feature-grid {
+      display: grid;
+      grid-template-columns: minmax(130px, 0.42fr) repeat(3, minmax(180px, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .personal-copy.compact-copy {
+      min-height: 260px;
+      border: 1px solid #f5e1df;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .personal-copy.compact-copy h4 {
+      margin: 0;
+      color: var(--rose-ink);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .fanart-card,
+    .motion-group .media-card {
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .fanart-card .image-placeholder,
+    .motion-group .image-placeholder {
+      min-height: 0;
+      height: 100%;
+      padding: 0;
+      overflow: hidden;
+      border-style: solid;
+      background: #fffdfd;
+    }
+
+    .fanart-card .image-placeholder img,
+    .motion-group .image-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .fanart-card .image-placeholder {
+      min-height: 260px;
+    }
+
+    .motion-group {
+      display: grid;
+      gap: 10px;
+    }
+
+    .motion-group h4 {
+      margin: 0;
+      color: var(--rose-ink);
+      font-size: 17px;
+    }
+
+    .motion-group .personal-grid.motion {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .motion-group .image-placeholder {
+      aspect-ratio: 1 / 1;
+    }
+
+    .writing-as-skill .writing-mini-head {
+      margin-bottom: 16px;
+    }
+
+    .writing-as-skill .writing-mini-head h2 {
+      font-size: clamp(24px, 3vw, 36px);
+    }
+
+    @media (max-width: 980px) {
+      .skill-index,
+      .personal-feature-grid,
+      .motion-group .personal-grid.motion {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .personal-copy.compact-copy {
+        min-height: 160px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .skill-index,
+      .personal-feature-grid,
+      .motion-group .personal-grid.motion {
+        grid-template-columns: 1fr;
+      }
+    }
+    /* End skills switcher v2 */
+  
+    /* Toothless square alignment */
+    .fanart-square .image-placeholder {
+      aspect-ratio: 1 / 1;
+      min-height: 0;
+      align-self: center;
+    }
+
+    .fanart-square .image-placeholder img {
+      object-fit: contain;
+      background: #fffdfd;
+    }
+
+    .toothless-card {
+      align-self: center;
+    }
+    /* End Toothless square alignment */
+  
+    /* Bilingual toggle and full lightbox */
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .language-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-height: 32px;
+      border: 1px solid rgba(213, 123, 120, 0.32);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.68);
+      color: var(--sage-deep);
+      padding: 6px 10px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+    }
+
+    .language-toggle:hover {
+      transform: translateY(-1px);
+      background: var(--pink-100);
+      color: var(--rose-ink);
+    }
+
+    body[data-lang="zh"] .language-toggle span:first-child,
+    body[data-lang="en"] .language-toggle span:last-child {
+      color: var(--rose-ink);
+    }
+
+    body[data-lang="zh"] .language-toggle span:last-child,
+    body[data-lang="en"] .language-toggle span:first-child,
+    .language-toggle .toggle-divider {
+      opacity: 0.55;
+    }
+
+    .portfolio-lightbox {
+      padding: 8px !important;
+      background: rgba(54, 43, 42, 0.62) !important;
+    }
+
+    .portfolio-lightbox-panel {
+      width: 98vw !important;
+      height: 96vh !important;
+      max-height: 96vh !important;
+      border-radius: 18px !important;
+      padding: 10px !important;
+      overflow: hidden !important;
+      display: grid !important;
+      grid-template-rows: minmax(0, 1fr) auto !important;
+    }
+
+    .portfolio-lightbox-content {
+      width: 100% !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      display: grid !important;
+      place-items: center !important;
+    }
+
+    .portfolio-lightbox-content img,
+    .portfolio-lightbox-content video {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 14px !important;
+    }
+
+    .portfolio-lightbox-close {
+      z-index: 3 !important;
+      top: 14px !important;
+      right: 14px !important;
+      background: rgba(255, 246, 245, 0.92) !important;
+      box-shadow: 0 8px 20px rgba(74, 58, 57, 0.16) !important;
+    }
+
+    .portfolio-lightbox-caption {
+      position: absolute !important;
+      left: 18px !important;
+      right: 64px !important;
+      bottom: 14px !important;
+      margin: 0 !important;
+      border: 1px solid rgba(245, 213, 210, 0.88) !important;
+      border-radius: 999px !important;
+      background: rgba(255, 253, 253, 0.88) !important;
+      color: var(--sage-deep) !important;
+      padding: 6px 12px !important;
+      font-size: 12px !important;
+      line-height: 1.35 !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      pointer-events: none !important;
+    }
+
+    @media (max-width: 760px) {
+      .topbar-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .portfolio-lightbox-panel {
+        width: 98vw !important;
+        height: 94vh !important;
+      }
+    }
+    /* End bilingual toggle and full lightbox */
+    /* Fullscreen lightbox fit v2 */
+    .portfolio-lightbox {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 9999 !important;
+      padding: 0 !important;
+      background: rgba(46, 34, 34, .9) !important;
+      display: none;
+      align-items: stretch !important;
+      justify-content: stretch !important;
+    }
+
+    .portfolio-lightbox.is-open { display: flex !important; }
+
+    .portfolio-lightbox-panel {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none !important;
+      max-height: none !important;
+      border-radius: 0 !important;
+      padding: clamp(12px, 2vw, 28px) !important;
+      background: rgba(255, 247, 247, .96) !important;
+      display: grid !important;
+      grid-template-rows: minmax(0, 1fr) auto !important;
+      gap: 10px !important;
+      box-sizing: border-box !important;
+      overflow: hidden !important;
+    }
+
+    .portfolio-lightbox-content {
+      min-height: 0 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+    }
+
+    .portfolio-lightbox-content img,
+    .portfolio-lightbox-content video {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: 100% !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      border-radius: 10px !important;
+      display: block !important;
+      background: #fff7f7 !important;
+      box-shadow: 0 18px 60px rgba(68, 48, 48, .22) !important;
+    }
+
+    .portfolio-lightbox-caption {
+      position: static !important;
+      width: min(960px, 92vw) !important;
+      margin: 0 auto !important;
+      text-align: center !important;
+      color: #7f5f5f !important;
+      font-size: .95rem !important;
+      line-height: 1.5 !important;
+      text-shadow: none !important;
+    }
+
+    .portfolio-lightbox-close {
+      position: fixed !important;
+      top: 16px !important;
+      right: 18px !important;
+      z-index: 10000 !important;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="#home">Portfolio</a><div class="topbar-actions"><nav class="nav" aria-label="Portfolio navigation"><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#summary">Summary</a><a href="#contact">Contact</a></nav><button class="language-toggle" type="button" aria-label="Switch language" data-lang-toggle><span>CN</span><span class="toggle-divider">/</span><span>EN</span></button></div></header>
+  <main>
+    <section id="home" class="hero"><div class="hero-inner"><h1 class="hello">Hello, welcome<br>to Jessica's portfolio</h1><div class="hero-grid"><p class="intro-line">故事创作|分镜设计|二维动画|文字表达</p><p class="profile-note">欢迎来到我的世界。</p></div></div></section>
+    <section id="about" class="band-cream"><div class="wrap"><div class="section-head"><div><p class="eyebrow">About me</p><h2>
+  Jessica Li<br>
+  <span class="cn-name">李佳润</span>
+</h2></div></div><div class="about-grid about-grid-balanced"><div class="soft-panel about-intro-panel"><h3>自我介绍</h3><p>
+毕业于英国 Teesside University 2D Animation &amp; Stop Motion 专业（Distinction），我的创作重点是用动画讲故事，尤其关注人物情绪、女性成长、社会议题，以及日常生活中细小但真实的感受。
+
+</p><p>我通常会从一个情绪、一个问题，或一次生活观察开始发展作品。相比单纯追求写实或精致的画面，我更喜欢用抽象化的视觉表达、动漫式的情绪夸张、蒙太奇剪辑和节奏变化，去呈现角色的内心状态，并把这些感受转化成一个完整的故事。
+
+
+</p><p>目前，我已独立完成多部手绘动画、定格动画、拼贴动画和二创短片创作。除了动画创作之外，我也拥有 7 年文字内容创作经验，长期进行文字创作、影评、角色分析与 IP 社群内容运营。这些经历让我更重视叙事、角色和情绪本身，也让我能够通过画面与文字共同讲出有共鸣的故事。 
+
+</p></div><div class="about-side-area"><div class="info-list about-info-list"><div class="mini-card"><strong>创作方向</strong>故事创作 / 二维动画 / 前期设计 / 分镜设计</div><div class="mini-card"><strong>掌握软件</strong>AE、Toon Boom Harmony、Adobe Animate、Procreate、Photoshop、CapCut 等。</div><div class="mini-card"><strong>语言</strong>雅思听阅 7.5，两年海外生活经验，可进行专业学术交流、写作与项目阐述</div><div class="mini-card"><strong>关键词</strong>Storytelling、情绪叙事、女性成长、视觉叙事。</div></div><div class="about-photo-stack"><div class="about-photo-card"><div class="about-photo"><img src="imagine/self-imagine.png" alt="Jessica Li 个人照片"></div><p class="about-photo-note">Jessica Li / 李佳润</p></div><figure class="about-distinction-card about-distinction-mini"><div class="image-placeholder about-distinction-image"><img src="imagine/distinction.jpg" alt="Teesside University Distinction 成绩证明"></div><figcaption>Distinction</figcaption></figure></div><div class="about-tag-strip"><span class="tag">二维逐帧动画</span><span class="tag">Toon Boom Harmony</span><span class="tag">After Effects</span><span class="tag">剪辑 / 合成</span><span class="tag">叙事</span><span class="tag">定格动画</span><span class="tag">分镜</span></div></div></div></div></section>
+<section id="projects" class="band-pink"><div class="wrap"><div class="section-head"><div><p class="eyebrow">My projects</p><h2>Animation<br>动画作品</h2></div><p class="lead">2d逐帧手绘/定格动画/拼贴动画</p></div><div class="project-index"><a class="project-link" href="#fat"><h3>《FAT！》</h3><span>2D 逐帧手绘动画 / 女性主义 / 跳脱社会凝视</span></a><a class="project-link" href="#likes"><h3>《Annoying likes》</h3><span>定格动画 / 同人社交 / 无效社交</span></a><a class="project-link" href="#dream"><h3>《坠入梦境的女孩》</h3><span>拼贴动画 / 梦境蒙太奇 / 自我巡视</span></a></div><div class="project-stack">
+      <article id="fat" class="project case-study">
+  <section class="case-block case-hero">
+    <div class="case-copy">
+      <span class="case-kicker">Project Overview</span>
+      <h2 class="case-title">《FAT！》</h2>
+      <div class="case-meta">
+        <div><strong>独立制作｜</strong>剧本｜分镜｜角色设计｜动画｜后期</div>
+        <div><strong>创作周期：</strong>4个月</div>
+        <div><strong>成绩：</strong>Distinction</div>
+        <div><strong>抖音：</strong>7K+播放 / 500+点赞</div>
+        <div><strong>Bilibili：</strong><a href="https://b23.tv/qYH32p9" target="_blank" rel="noopener">点击观看完整作品</a></div>
+      </div>
+      <p>《Fat!》是一部时长4分57秒的独立2D动画短片。</p>
+      <p>故事围绕一名名叫杰西卡的年轻女孩展开，她在视频通话中因身材遭到母亲的批评。母亲的严厉评判使她产生了严重的身体形象焦虑，并让她的内心世界发生了深刻的变化。</p>
+    </div>
+    <div class="image-grid-3 fat-main-visual" style="margin-top:0;"><div class="image-placeholder large"><img src="imagine/FAT/FAT.1.png" alt="《FAT！》项目概览主剧照"></div></div>
+  </section>
+
+  <section class="case-block">
+    <span class="case-kicker">Inspiration</span>
+    <h3 class="case-section-title">灵感来源</h3>
+    <div class="case-split">
+      <div class="case-copy compact">
+        <p>《FAT！》的灵感来自一次我和母亲关于体重的日常对话。她本意是关心我，但那些随口的评价给我带来了很大的压力，也让我开始思考：为什么女性总是这么在意自己是否被别人注视和评价？</p>
+        <p>在思考过后，我意识到，这是女性从古至今被社会规训的结果，因为整个社会都会对女性的外貌作出评价。</p>
+        <p>于是我想：如果女性跳脱出社会评价呢？没有人会说总统的胖瘦，大家只会说：ta是一位总统。所以，这种焦虑给我带来了灵感：当一个女孩在被贴上“胖”的标签后，真的变得越来越膨胀，最后像气球一样飞向了宇宙后会发生什么？</p>
+        <p>当她飞到最高点，俯瞰着渺小的地球后，她发现自己：“我真是太棒了！”</p>
+        <p>我想通过这个故事表达：当女性飞得更高、更远，拥有更大的视角时，那些原本困住自己的社会标准和外界评价，也会慢慢失去力量。女性的力量不来自迎合别人的标准，而是跳脱出社会评价体系，这样才能飞得更高、更远。</p>
+      </div>
+      <div class="image-grid-3 inspiration-images">
+        <figure class="image-placeholder feature media-figure">
+          <img src="imagine/FAT/FAT%20character/FAT.2%20inspiration.avif" alt="《FAT！》灵感来源参考图">
+          <figcaption>灵感来源：各类型的母女关系</figcaption>
+        </figure>
+        <figure class="image-placeholder media-figure">
+          <img src="imagine/FAT/FAT%20character/Fat.3%20inspiration.avif" alt="《FAT！》情绪板参考图">
+          <figcaption>情绪板</figcaption>
+        </figure>
+        <figure class="image-placeholder media-figure">
+          <img src="imagine/FAT/FAT%20character/Fat.4%20inspiration.avif" alt="《FAT！》色彩灵感参考图">
+          <figcaption>色彩灵感：电影《从二十一世纪撤离》的末日色彩</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-block">
+    <span class="case-kicker">Character Design</span>
+    <h3 class="case-section-title">人物设计</h3>
+    <div class="case-copy">
+      <p>《FAT！》的人物设计非常直接，也带有很强的个人经验。因为故事本身来自我的生活，所以女儿和母亲的视觉参考也分别来自我和我的母亲。</p>
+      <p>我希望观众能感受到：她们是母女，某些地方相似，但性格、气质和表达方式又完全不同。</p>
+    </div>
+
+    <div class="character-grid">
+      <div class="character-card">
+        <div class="case-copy">
+          <h4>女儿设计</h4>
+          <p>女儿的初始造型基于我自己的造型。</p>
+          <p>我在她的头发上加入了螺旋线，让角色看起来更圆润、更蓬松，也提前暗示她之后会变成气球。</p>
+          <p>颜色上，我选择了金色、浅粉色和浅蓝色。这些颜色让角色看起来更轻、更柔软，也带有一种逐渐“膨胀”的感觉。</p>
+        </div>
+        <div class="character-visuals-large">
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20character/FAT.6.%20character.jpg" alt="《FAT！》女儿设计参考"><figcaption>女儿设计参考：圆润，少女，q版的线条</figcaption></figure>
+          <figure class="image-placeholder main-reference media-figure"><img src="imagine/FAT/FAT%20character/FAT.7%20character.jpg?v=20260709-daughter-final" alt="《FAT！》女儿角色成品设计图"><figcaption>女儿成品设计</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20character/FAT.8%20CHARACTER.jpg" alt="《FAT！》女儿六视图设计"><figcaption>女儿六视图</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20character/FAT.9%20CHA.jpg" alt="《FAT！》女儿表情设计"><figcaption>女儿表情设计</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="character-card">
+        <div class="case-copy">
+          <h4>母亲设计</h4>
+          <p>母亲的设计重点是压迫感。</p>
+          <p>她是复杂的人物，是一个以“为你好”为理由、习惯掌控女儿的角色。</p>
+          <p>所以我在视觉上强化了她尖锐的表情、冷淡的眼神和较深的法令纹，让她看起来更严厉、更有压迫感。</p>
+          <p>颜色上，我使用了深棕色和军绿色，与女儿明亮柔和的配色形成对比。</p>
+        </div>
+        <div class="character-visuals-large">
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20character/FAT.10.avif" alt="《FAT！》母亲设计参考"><figcaption>母亲设计参考：《青春变形记》《长发公主》母亲形象</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20character/FAT.11.jpg" alt="《FAT！》母亲成品设计"><figcaption>母亲成品设计</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20character/FAT.12.jpg" alt="《FAT！》母亲六视图 / 旋转设计"><figcaption>母亲六视图 / </figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20character/FAT.13.jpg" alt="《FAT！》母亲表情设计"><figcaption>母亲表情设计</figcaption></figure>
+        </div>
+      </div>
+
+      <div class="character-card">
+        <div class="case-copy">
+          <h4>气球设计</h4>
+          <p>气球形态是这个项目里最重要的设计之一。</p>
+          <p>最初的气球设计并不成功，因为我太关注角色的脸部表情，却忽略了气球本身应该是一个完整、圆润、轻盈、漂浮的整体。</p>
+          <p>后来我花了两周重新收集参考，包括《哈利·波特3》里的气球场景和真实的人形气球。</p>
+          <p>这次修改让我意识到，角色设计不能只看局部，而要考虑整个形体是否符合故事和动作需要。</p>
+          <p>最后，我重新调整了气球的整体轮廓，让它更贴合女儿的角色，也更符合“膨胀、漂浮、失控”的视觉感受。</p>
+        </div>
+        <div class="character-visuals-large">
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20Ballon/FAT%20BALLON%201.avif" alt="《FAT！》气球设计参考"><figcaption>气球设计参考：《哈利波特与阿兹卡班的囚徒》</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20Ballon/FAT%20BALLON%202.jpg" alt="《FAT！》气球修改前"><figcaption>气球修改前</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20Ballon/FAT%20BALLON%203.jpg" alt="《FAT！》气球修改后"><figcaption>气球修改后</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20Ballon/FAT%20BALLON%204.gif" alt="《FAT！》气球动图测试 01"><figcaption>气球循环测试1</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20Ballon/FAT%20BALLON%205.gif" alt="《FAT！》气球动图测试 02"><figcaption>气球循环测试2</figcaption></figure>
+          <figure class="image-placeholder media-figure"><img src="imagine/FAT/FAT%20Ballon/FAT%20BALLON%206.gif" alt="《FAT！》气球动图测试 03"><figcaption>气球循环测试3</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+    <section class="case-block bw-process">
+    <span class="case-kicker">Problem Solving</span>
+    <h3 class="case-section-title">黑白方案调整</h3>
+    <div class="case-split bw-decision-layout">
+      <div class="case-copy compact">
+        <p>制作到中段时，我发现原本设想的幻想场景过于复杂。如果继续沿用原方案，画面完成度和制作进度都会受到影响。</p>
+        <p>我没有继续堆复杂画面，而是重新判断这一段真正需要表达的情绪：被评价后的压迫感、自我怀疑，以及角色内心被放大的声音。</p>
+        <p>因此，我将这一段调整为黑白高对比风格，用更少的线条、更强的黑色空间和少量红色元素，让情绪变得更集中。</p>
+        <div class="decision-points">
+          <div><strong>Before</strong><span>原方案过于复杂，影响完成度。</span></div>
+          <div><strong>Decision</strong><span>转向黑白高对比视觉方案。</span></div>
+          <div><strong>Result</strong><span>画面更简单，但焦虑和压迫感更强。</span></div>
+        </div>
+      </div>
+      <div class="bw-process-images bw-process-gallery">
+        <figure class="image-placeholder media-figure bw-step">
+          <img src="imagine/FAT/FAT%20SET/FAT%20black%201.jpg" alt="《FAT！》黑白方案 Before 原方案问题">
+          <figcaption>原本设想：家具融化成彩色的色彩</figcaption>
+        </figure>
+        <figure class="image-placeholder media-figure bw-step">
+          <img src="imagine/FAT/FAT%20SET/FAT%20black%202.gif" alt="《FAT！》黑白方案 Decision 风格测试动图">
+          <figcaption>调整视觉方案：以黑白为基调，突出焦虑情绪</figcaption>
+        </figure>
+        <div class="bw-result-panel">
+          <div class="bw-result-head">
+            <strong>Result / 最终动画效果</strong>
+          </div>
+          <div class="bw-result-grid">
+            <figure class="image-placeholder media-figure bw-result-gif">
+              <img src="imagine/FAT/FAT%20SET/FAT%20Black%203.gif" alt="《FAT！》黑白最终动图 01">
+              <figcaption>人物逐渐陷入幻想</figcaption>
+            </figure>
+            <figure class="image-placeholder media-figure bw-result-gif">
+              <img src="imagine/FAT/FAT%20SET/FAT%20Black%204.gif" alt="《FAT！》黑白最终动图 02">
+              <figcaption>（蒙太奇）质疑的话语像锁链一样捆住主角</figcaption>
+            </figure>
+            <figure class="image-placeholder media-figure bw-result-gif">
+              <img src="imagine/FAT/FAT%20SET/FAT%20Black%205.gif" alt="《FAT！》黑白最终动图 03">
+              <figcaption>黑白的基础上，增加画面磨砂与抖动效果</figcaption>
+            </figure>
+            <figure class="image-placeholder media-figure bw-result-gif">
+              <img src="imagine/FAT/FAT%20SET/FAT%20Black%206.gif" alt="《FAT！》黑白最终动图 04">
+              <figcaption>节省了大部分时间的同时情绪更深刻</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="case-block fat-postproduction-section">
+  <span class="case-kicker">Post-production</span>
+  <h3 class="case-section-title">合成剪辑</h3>
+  <div class="fat-post-head">
+    <p>《FAT！》的后期重点不是堆复杂效果，而是用 Toon Boom Harmony、After Effects 和剪辑软件补足画面质感、运动和情绪层次，让简单画风更有完成度。</p>
+  </div>
+  <div class="compose-stack">
+    <article class="compose-row compose-tools">
+      <div class="compose-copy">
+        <span class="compose-num">01</span>
+        <h4>使用软件</h4>
+        <p>主要使用 Toon Boom Harmony、After Effects、Procreate / Callipeg 和剪映完成动画绘制、质感处理、合成与剪辑整理。</p>
+      </div>
+      <div class="compose-media single">
+        <figure class="media-card"><div class="image-placeholder"><img src="imagine/FAT/FAT%20compose/0.jpg" alt="《FAT！》使用软件"></div><figcaption>使用软件组合</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="compose-row">
+      <div class="compose-copy">
+        <span class="compose-num">02</span>
+        <h4>Toon Boom Harmony 质感处理</h4>
+        <p>在黑白段落中，我使用 Animated Pencil Texture 和 Grain 为线条增加颗粒感，让简单线稿更接近手绘质感，也强化被评价后的不安情绪。</p>
+      </div>
+      <div class="compose-media two">
+        <figure class="media-card"><div class="image-placeholder"><img src="imagine/FAT/FAT%20compose/1%20tbh.png" alt="Toon Boom Harmony 节点与时间线"></div><figcaption>效果设置 / 节点与时间线</figcaption></figure>
+        <figure class="media-card"><div class="image-placeholder"><img src="imagine/FAT/FAT%20compose/2%20tbh.png" alt="Toon Boom Harmony 黑白线条质感"></div><figcaption>黑白线条质感</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="compose-row">
+      <div class="compose-copy">
+        <span class="compose-num">03</span>
+        <h4>After Effects 视觉合成</h4>
+        <p>对于需要大幅运动、光效和空间变化的画面，我使用 After Effects 完成合成、叠加和节奏调整，使画面更有流动感和情绪推进。</p>
+      </div>
+      <div class="compose-media two">
+        <figure class="media-card"><div class="image-placeholder"><img src="imagine/FAT/FAT%20compose/3%20ae.png" alt="After Effects 合成界面"></div><figcaption>AE 合成界面</figcaption></figure>
+        <figure class="media-card"><div class="image-placeholder"><img src="imagine/FAT/FAT%20compose/4%20ae.png" alt="After Effects 光效与运动效果"></div><figcaption>光效 / 运动效果</figcaption></figure>
+      </div>
+    </article>
+
+    <article class="compose-row">
+      <div class="compose-copy">
+        <span class="compose-num">04</span>
+        <h4>剪辑与成片整理</h4>
+        <p>最后在剪映中整理镜头顺序、节奏和成片输出，让故事从对话、膨胀、失控到释放形成清楚的情绪推进。</p>
+      </div>
+      <div class="compose-media single">
+        <figure class="media-card"><div class="image-placeholder"><img src="imagine/FAT/FAT%20compose/5%20capcut.png" alt="《FAT！》剪辑时间线"></div><figcaption>剪辑时间线 / 成片整理</figcaption></figure>
+      </div>
+    </article>
+  </div>
+</section>
+<section class="case-block story-stills-section">
+    <span class="case-kicker">Story Stills</span>
+    <h3 class="case-section-title">故事剧照</h3>
+
+    <div class="story-gallery-group">
+      <div class="gallery-head">
+              </div>
+      <div class="shot-grid">
+        <figure class="still-card media-figure story-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/GIF%201.gif" alt="《FAT！》故事剧照 01"></div><figcaption>剧照 01：被说胖后的表情变化</figcaption></figure>
+        <figure class="still-card media-figure story-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/GIF%202.gif" alt="《FAT！》故事剧照 02"></div><figcaption>剧照 02：母亲的随意评价</figcaption></figure>
+        <figure class="still-card media-figure story-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/GIF%203.gif" alt="《FAT！》故事剧照 03"></div><figcaption>剧照 03：动漫手法表达母女冲突</figcaption></figure>
+        <figure class="still-card media-figure story-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/GIF%204.gif" alt="《FAT！》故事剧照 04"></div><figcaption>剧照 04：女儿失落的光影变化</figcaption></figure>
+        <figure class="still-card media-figure story-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/GIF%205.gif" alt="《FAT！》故事剧照 05"></div><figcaption>剧照 05：气球漂浮上空</figcaption></figure>
+        <figure class="still-card media-figure story-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/GIF%206.gif" alt="《FAT！》故事剧照 06"></div><figcaption>剧照 06：女儿化成超新星</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="story-gallery-group">
+      <div class="gallery-head">
+        <h4>概念设计图</h4>
+       
+      </div>
+      <div class="concept-grid">
+        <figure class="still-card media-figure concept-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/FAT%20STILL%201.png" alt="《FAT！》概念设计图 01"></div><figcaption>概念设计 01：宇宙</figcaption></figure>
+        <figure class="still-card media-figure concept-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/FAT%20STILL%202.png" alt="《FAT！》概念设计图 02"></div><figcaption>概念设计 02：城市上空</figcaption></figure>
+        <figure class="still-card media-figure concept-shot"><div class="image-placeholder"><img src="imagine/FAT/FAT%20SET/FAT%20STILL%203.jpg" alt="《FAT！》概念设计图 03"></div><figcaption>概念设计 03：云层</figcaption></figure>
+      </div>
+    </div>
+
+        <div class="case-learning-summary">
+      <div class="section-line-head learning-head">
+        <div><span class="case-kicker">Project Takeaway</span><h3 class="case-section-title">项目收获 / 能力展示</h3></div>
+        <p>《FAT！》不只是一次完整创作，也让我建立了可以带入职场的动画制作方法。</p>
+      </div>
+      <div class="learning-grid">
+        <div class="learning-card learning-feature"><strong>全流程制作能力</strong><p>独立完成剧本、分镜、角色设计、逐帧动画、合成、剪辑与发布，理解二维动画从概念到成片的完整流程。</p></div>
+        <div class="learning-card"><strong>快速自学能力</strong><p>在 4 个月内集中学习并运用 Toon Boom Harmony、After Effects、Procreate、Callipeg 等 4 个专业制作软件，并落实到最终成片。</p></div>
+        <div class="learning-card"><strong>独立执行能力</strong><p>从前期到后期均由我独立完成。我学会了拆分任务、安排优先级，并在有限时间内持续推进作品完成。</p></div>
+        <div class="learning-card"><strong>问题解决能力</strong><p>当复杂画面难以实现时，我重新调整为黑白线条与纹理风格，在降低制作风险的同时强化了情绪表达。</p></div>
+        <div class="learning-card"><strong>职业转化能力</strong><p>这个项目让我确认，我可以把叙事、软件、执行和复盘能力带入实际项目，参与动画、前期设计与后期相关工作。</p></div>
+      </div>
+    </div>
+  </section>  <div class="project-return"><a class="project-home-button" href="#projects">回到项目主页 / Back to Projects</a></div>
+</article><article id="likes" class="project case-study secondary-project streamlined-case">
+  <section class="case-block case-hero">
+    <div class="case-copy">
+      <span class="case-kicker">Project Overview</span>
+      <h2 class="case-title">《Annoying Likes》</h2>
+      <div class="case-meta">
+        <div><strong>独立制作｜</strong>故事策划｜道具制作｜定格拍摄｜剪辑后期</div>
+        <div><strong>创作周期：</strong>一个月</div>
+        <div><strong>Bilibili：</strong>10K+播放 / 60+评论</div>
+        <div><strong>Bilibili 链接：</strong><a href="https://www.bilibili.com/video/BV1rG4y1G7Ke?vd_source=aaf366f4768ba891af8c0bb9d3d8239c" target="_blank" rel="noopener">点击观看完整作品</a></div>
+      </div>
+      <p>《Annoying Likes》是一部关于同人创作、社交压力和无效互动的定格动画短片。</p>
+      <p>我用食物和玩具道具代替不同类型的作品与创作者：萝卜白菜，各有所爱。这个隐喻让“审美偏好”和“社交压力”变得更轻松、直观，也更适合用定格动画呈现。</p>
+    </div>
+    <div class="image-grid-3 overview-main-visual likes-main-visual" style="margin-top:0;"><div class="image-placeholder large"><img src="imagine/Annoying%20likes/Anoying%20Likes%201.gif" alt="《Annoying Likes》项目主视觉动图"></div></div>
+  </section>
+
+  <section class="case-block support-flow">
+    <div class="section-line-head">
+      <div><span class="case-kicker">Process</span><h3 class="case-section-title">制作路径</h3></div>
+    </div>
+    <div class="flow-row">
+      <div class="flow-step prop-step"><strong>01 灵感与道具隐喻</strong><p>我把不同创作者的产出想成不同食物：萝卜白菜，各有所爱。每个作者是不同的食物容器，而这些不同风味的食物就是ta们的产出。有些人喜欢吃中餐，有些人喜欢吃西餐，如同大家喜欢看的同人作品口味都不一样。</p><figure class="media-card"><div class="image-placeholder"><img src="imagine/Annoying%20likes/inspiration.jpg" alt="《Annoying Likes》灵感与食物道具隐喻"></div><figcaption>食物与玩具隐喻 / Inspiration</figcaption></figure></div>
+      <div class="flow-step research-step"><strong>02 调研</strong><p>问卷与访谈确认：这不是个人感受，而是创作者社群里常见的压力。</p><figure class="media-card"><div class="image-placeholder"><img src="imagine/Annoying%20likes/research.png" alt="《Annoying Likes》调研问卷与访谈"></div><figcaption>调研证据 / Research</figcaption></figure></div>
+      <div class="flow-step storyboard-step"><strong>03 分镜</strong><p>用故事板控制互动节奏，让小物件也能承担叙事推进。</p><figure class="media-card"><div class="image-placeholder"><img src="imagine/Annoying%20likes/storyboards.jpg" alt="《Annoying Likes》故事板"></div><figcaption>叙事节奏 / Storyboard</figcaption></figure></div>
+      <div class="flow-step final-step"><strong>04 成片精选</strong><p>有趣片段</p><div class="final-gif-grid"><figure class="media-card"><div class="image-placeholder"><img src="imagine/Annoying%20likes/gif%201.gif" alt="《Annoying Likes》成片精选 01"></div><figcaption>对于“是否回关”的纠结，以恶魔与天使呈现</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/Annoying%20likes/gif%202.gif" alt="《Annoying Likes》成片精选 02"></div><figcaption>表达被取关的落寞</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/Annoying%20likes/gif%203.gif" alt="《Annoying Likes》成片精选 03"></div><figcaption>互相“欣赏”对方的产出，但是其实放食物的容器并不对（不合口味）</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/Annoying%20likes/gif%204.gif" alt="《Annoying Likes》成片精选 04"></div><figcaption>“取关”后的轻松</figcaption></figure></div></div>
+    </div>
+  </section>  <div class="project-return"><a class="project-home-button" href="#projects">回到项目主页 / Back to Projects</a></div>
+
+  
+</article><article id="dream" class="project case-study secondary-project streamlined-case">
+  <section class="case-block case-hero">
+    <div class="case-copy">
+      <span class="case-kicker">Project Overview</span>
+      <h2 class="case-title">《坠入梦境的女孩》</h2>
+      <div class="case-meta">
+        <div><strong>独立制作｜</strong>故事方向｜拼贴视觉｜实拍素材｜场景设计｜剪辑后期</div>
+        <div><strong>项目类型：</strong>拼贴动画 / Collage Animation</div>
+        <div><strong>成片：</strong>可面试展示</div>
+      </div>
+      <p>《坠入梦境的女孩》讲述一个芭蕾女孩在梦境中冒险，并逐渐找回勇气和自我的故事。</p>
+      <p>我用黑白拼贴、实拍素材和后期合成，表现角色被他人评价影响后的心理空间，让抽象的自我怀疑变成可被观看的梦境冒险。</p>
+    </div>
+    <div class="image-grid-3 overview-main-visual dream-main-visual" style="margin-top:0;"><div class="image-placeholder large"><img src="imagine/dream%20girl/1%20start.gif" alt="《坠入梦境的女孩》项目概览主视觉动图"></div></div>
+  </section>
+
+  <section class="case-block support-flow">
+    <div class="section-line-head">
+      <div><span class="case-kicker">Process</span><h3 class="case-section-title">制作路径</h3></div>
+    </div>
+    <div class="flow-row dream-flow-row">
+      <div class="flow-step dream-inspiration-step"><strong>01 调研 / 情绪来源</strong><p>把“在意他人评价”转成梦境冒险，让心理压力具象化。</p><figure class="media-card"><div class="image-placeholder"><img src="imagine/dream%20girl/2.png" alt="《坠入梦境的女孩》调研与情绪来源"></div><figcaption>调研 / 情绪来源</figcaption></figure></div>
+      <div class="flow-step dream-visual-step"><strong>02 视觉系统</strong><p>确定黑白拼贴、现实素材和舞台感空间，并将视觉参考转化为最终画面。</p><div class="dream-visual-pair"><figure class="media-card"><div class="image-placeholder"><img src="imagine/dream%20girl/3.jpg" alt="《坠入梦境的女孩》视觉参考与梦境风格"></div><figcaption>视觉参考</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/dream%20girl/2%201.jpg" alt="《坠入梦境的女孩》最终视觉呈现"></div><figcaption>最终视觉呈现</figcaption></figure></div></div>
+      <div class="flow-step dream-live-step"><strong>03 实拍素材</strong><p>拍摄芭蕾动作与角色素材，让拼贴画面有真实身体基础。</p><figure class="media-card"><div class="image-placeholder"><img src="imagine/dream%20girl/4.jpg" alt="《坠入梦境的女孩》实拍素材与动作采集"></div><figcaption>实拍素材 / 动作采集</figcaption></figure></div>
+    </div>
+  </section>
+
+  <section class="case-block support-results">
+    <div class="section-line-head">
+      <div><span class="case-kicker">Selected Stills</span><h3 class="case-section-title">精选结果</h3></div>
+        </div>
+    <div class="clean-stills dream-stills">
+      <figure class="media-card"><div class="image-placeholder"><img src="imagine/dream%20girl/6.gif" alt="《坠入梦境的女孩》精选剧照 01"></div><figcaption>蒙太奇转场</figcaption></figure>
+      <figure class="media-card"><div class="image-placeholder"><img src="imagine/dream%20girl/7.gif" alt="《坠入梦境的女孩》精选剧照 02"></div><figcaption>梦幻世界</figcaption></figure>
+      <figure class="media-card"><div class="image-placeholder"><img src="imagine/dream%20girl/8.gif" alt="《坠入梦境的女孩》精选剧照 03"></div><figcaption>怪诞的幻想</figcaption></figure>
+      <figure class="media-card"><div class="image-placeholder"><img src="imagine/dream%20girl/9.gif" alt="《坠入梦境的女孩》精选剧照 04"></div><figcaption>找回勇气</figcaption></figure>
+    </div>
+    <p class="project-reflection">这个项目作为辅助作品，主要展示我能用实验影像、实拍素材和后期合成表达人物心理，也为我的2D动画项目铺垫了基础，发掘出我擅长运用情绪的特长。</p>
+  </section>  <div class="project-return"><a class="project-home-button" href="#projects">回到项目主页 / Back to Projects</a></div>
+</article>
+    </div></div></section>
+    <section id="skills" class="band-sage">
+  <div class="wrap">
+    <div class="section-head">
+      <div><p class="eyebrow">Other Skills</p><h2>Other Skills<br>更多能力</h2></div>
+      <p class="lead">动画之外，我也持续训练设计、个人创作、剪辑传播和文字表达能力。这里作为项目页之外的补充展示。</p>
+    </div>
+
+    <div class="skill-index">
+      <a class="skill-link" href="#skill-design"><h3>其他设计</h3><span>表情设计 / 环境设计</span></a>
+      <a class="skill-link" href="#skill-personal"><h3>个人创作</h3><span>角色插画 / 动画循环练习</span></a>
+      <a class="skill-link" href="#skill-general"><h3>综合 / 文字能力</h3><span>数据展示 / 剧本 / 故事片段 / 观众共鸣</span></a>
+    </div>
+
+    <div class="skill-stack">
+      <article id="skill-design" class="skill-panel">
+        <section class="skill-section">
+          <div class="skill-section-head">
+            <div><span class="case-kicker">Design</span><h3>其他设计</h3></div>
+          </div>
+          <div class="design-showcase">
+            <div class="design-page design-row">
+              <div class="design-text"><h4>表情设计</h4></div>
+              <div class="design-media">
+                <div class="expression-design-grid">
+                  <figure class="media-card"><div class="image-placeholder expression-wide"><img src="imagine/other%20design/1.jpg" alt="表情设计 01"></div><figcaption>表情设计 01</figcaption></figure>
+                  <figure class="media-card"><div class="image-placeholder expression-wide"><img src="imagine/other%20design/2.jpg" alt="表情设计 02"></div><figcaption>表情设计 02</figcaption></figure>
+                </div>
+              </div>
+            </div>
+            <div class="design-page design-row">
+              <div class="design-text"><h4>环境设计</h4></div>
+              <div class="design-media">
+                <figure class="media-card"><div class="image-placeholder big-design environment-design"><img src="imagine/other%20design/3.jpg" alt="环境设计"></div><figcaption>环境设计</figcaption></figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="skill-return"><a class="skill-home-button" href="#skills">回到能力主页 / Back to Skills</a></div>
+      </article>
+
+      <article id="skill-personal" class="skill-panel">
+        <section class="skill-section personal-skill-section">
+          <div class="skill-section-head compact">
+            <div><span class="case-kicker">Personal Works</span><h3>个人创作</h3></div>
+            <p class="lead">长期进行角色向个人创作，练习动画循环、角色插画等。</p>
+          </div>
+          <div class="personal-works rebuilt-personal">
+            <div class="personal-feature-grid">
+              <div class="personal-copy compact-copy"><h4>以《驯龙高手》IP为例</h4></div>
+              <figure class="media-card fanart-card fanart-tall"><div class="image-placeholder"><img src="imagine/Other%20skills/fanart/open.gif" alt="个人创作 Open 动图"></div><figcaption>眨眼循环</figcaption></figure>
+              <figure class="media-card fanart-card fanart-square toothless-card"><div class="image-placeholder"><img src="imagine/Other%20skills/fanart/toothless.jpg?v=20260709-toothless-square" alt="Toothless 角色插画"></div><figcaption>角色插画</figcaption></figure>
+              <figure class="media-card fanart-card fanart-square"><div class="image-placeholder"><img src="imagine/Other%20skills/fanart/whiplash%201.jpg" alt="Whiplash 角色插画"></div><figcaption>角色插画</figcaption></figure>
+            </div>
+
+            <div class="personal-group motion-group">
+              <h4>动画循环练习</h4>
+              <div class="personal-grid motion">
+                <figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/fanart/cycle%201.gif" alt="动画循环练习 01"></div><figcaption>动画循环练习 01</figcaption></figure>
+                <figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/fanart/cycle%202.gif" alt="动画循环练习 02"></div><figcaption>动画循环练习 02</figcaption></figure>
+                <figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/fanart/cycle%203.gif" alt="动画循环练习 03"></div><figcaption>动画循环练习 03</figcaption></figure>
+                <figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/fanart/cycle%204.gif" alt="动画循环练习 04"></div><figcaption>动画循环练习 04</figcaption></figure>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="skill-return"><a class="skill-home-button" href="#skills">回到能力主页 / Back to Skills</a></div>
+      </article>
+
+      <article id="skill-general" class="skill-panel">
+        <section class="skill-section simple-general-skills">
+          <div class="skill-section-head compact">
+            <div><span class="case-kicker">General Skills</span><h3>综合能力</h3></div>
+            <p class="lead">除了动画创作，我也具备内容传播、剪辑后期、英文沟通和文字表达能力，能够把作品从制作延伸到展示、发布和观众沟通。</p>
+          </div>
+          <div class="general-compact">
+            <div class="ability-metrics compact">
+              <div class="metric"><strong>223K+</strong>播放</div>
+              <div class="metric"><strong>55K+</strong>点赞</div>
+              <div class="metric"><strong>20W+</strong>浏览</div>
+              <div class="metric"><strong>4K+</strong>粉丝</div>
+            </div>
+            <div class="tags compact-tags">
+              <span class="tag">剪辑后期</span>
+              <span class="tag">自媒体运营</span>
+              <span class="tag">英语沟通</span>
+              <span class="tag">文字表达</span>
+            </div>
+            <div class="general-snapshot-grid">
+              <figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/xhs.jpg" alt="小红书数据截图"></div><figcaption>数据截图 01</figcaption></figure>
+              <figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/tiktok.jpg" alt="抖音数据截图"></div><figcaption>数据截图 02</figcaption></figure>
+              <figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/bilibili.png" alt="Bilibili 数据截图"></div><figcaption>数据截图 03</figcaption></figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="skill-section writing-as-skill">
+          <div class="section-head writing-mini-head">
+            <div><p class="eyebrow">Writing</p><h2>文字表达：故事、观点与观众共鸣。</h2></div>
+            <p class="lead">这里保留三类材料：剧本片段、故事片段，以及观众对观点的反馈。重点展示我能用文字建立情绪、角色和共鸣。</p>
+          </div>
+          <div class="writing-grid">
+            <div class="writing-piece writing-script"><h4>剧本片段</h4><p class="writing-note">《FAT！》剧本片段展示</p><div class="script-snapshot-grid"><figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/script%201.png" alt="《FAT！》剧本片段 01"></div><figcaption>《FAT！》剧本片段 01</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/script%202.png" alt="《FAT！》剧本片段 02"></div><figcaption>《FAT！》剧本片段 02</figcaption></figure></div></div>
+            <div class="writing-piece writing-story"><h4>个人小说片段</h4><p class="writing-note">片段试读</p><div class="article-snapshot-grid"><figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/article%201.png" alt="故事片段 01"></div><figcaption>文字片段 01</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/article%202.jpg" alt="故事片段 02"></div><figcaption>文字片段 02</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/article%203.jpg" alt="故事片段数据反馈"></div><figcaption>数据反馈</figcaption></figure></div></div>
+            <div class="writing-piece writing-audience"><h4>观众共鸣</h4><p class="writing-note">观众反馈。</p><div class="comment-snapshot-grid"><figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/comments%201.jpg" alt="观众共鸣评论截图 01"></div><figcaption>观众共鸣 01</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/comments%202.jpg" alt="观众共鸣评论截图 02"></div><figcaption>观众共鸣 02</figcaption></figure><figure class="media-card"><div class="image-placeholder"><img src="imagine/Other%20skills/comments%203.jpg" alt="观众共鸣评论截图 03"></div><figcaption>观众共鸣 03</figcaption></figure></div></div>
+          </div>
+        </section>
+        <div class="skill-return"><a class="skill-home-button" href="#skills">回到能力主页 / Back to Skills</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+<section id="summary" class="band-sage summary-section">
+      <div class="wrap">
+        <div class="section-head">
+          <div><p class="eyebrow">Summary</p><h2>创作总结</h2></div>
+          <p class="lead">Story-driven animation / Emotion-led visual storytelling</p>
+        </div>
+        <div class="summary-panel">
+          <p>我的创作始终围绕故事和情绪展开。相比单纯展示画面技巧，我更关注一个情绪如何被发展成角色、场景、节奏和完整的动画表达。</p>
+          <p>在不同媒介中，我尝试用手绘、拼贴、定格、抽象画面、动漫式表现和蒙太奇节奏去讲述人物的内心状态与现实中的细微感受。文字创作经验也让我更重视叙事逻辑、角色理解和情感表达。</p>
+          <p>我希望继续成为一名以故事为核心的动画创作者，用视觉和文字讲出有情绪、有观点、也有共鸣的作品。</p>
+        </div>
+      </div>
+    </section></main>
+  <footer id="contact" class="footer"><div class="wrap"><strong>Animation Portfolio / Jiarun Li</strong><div class="contact"><span>Email: 2797367917@qq.com</span><span>电话：18665863526</span><span>Showreel: link</span><span>Wechat：Jessicapinejr</span></div></div></footer>
+<script data-project-switcher-script="true">
+  (() => {
+    const projectIds = ['fat', 'likes', 'dream'];
+    const stack = document.querySelector('.project-stack');
+    const links = Array.from(document.querySelectorAll('.project-index .project-link[href^="#"]'));
+    if (!stack || !links.length) return;
+
+    const getValidProjectId = (id) => projectIds.includes(id) ? id : 'fat';
+
+    const setActiveProject = (id, shouldScroll = false) => {
+      const activeId = getValidProjectId(id);
+      stack.classList.add('project-filtered');
+
+      projectIds.forEach((projectId) => {
+        const project = document.getElementById(projectId);
+        if (!project) return;
+        project.classList.toggle('is-active', projectId === activeId);
+      });
+
+      links.forEach((link) => {
+        const linkId = link.getAttribute('href')?.replace('#', '');
+        link.classList.toggle('is-active', linkId === activeId);
+      });
+
+      if (shouldScroll) {
+        window.requestAnimationFrame(() => {
+          document.getElementById(activeId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    };
+
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const id = link.getAttribute('href')?.replace('#', '');
+        if (!projectIds.includes(id)) return;
+        event.preventDefault();
+        history.pushState(null, '', `#${id}`);
+        setActiveProject(id, true);
+      });
+    });
+
+    const syncFromHash = () => setActiveProject(window.location.hash.replace('#', ''), false);
+    window.addEventListener('hashchange', syncFromHash);
+    window.addEventListener('popstate', syncFromHash);
+    syncFromHash();
+  })();
+</script><script data-project-return-script="true">
+  (() => {
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('.project-home-button');
+      if (!button) return;
+      event.preventDefault();
+      history.pushState(null, '', '#projects');
+      document.querySelector('.project-index')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  })();
+</script><script data-skill-switcher-script="true">
+  (() => {
+    const skillIds = ['skill-design', 'skill-personal', 'skill-general'];
+    const stack = document.querySelector('.skill-stack');
+    const links = Array.from(document.querySelectorAll('.skill-index .skill-link[href^="#"]'));
+    if (!stack || !links.length) return;
+
+    const getValidSkillId = (id) => skillIds.includes(id) ? id : 'skill-design';
+
+    const setActiveSkill = (id, shouldScroll = false) => {
+      const activeId = getValidSkillId(id);
+      stack.classList.add('skill-filtered');
+
+      skillIds.forEach((skillId) => {
+        const panel = document.getElementById(skillId);
+        if (!panel) return;
+        panel.classList.toggle('is-active', skillId === activeId);
+      });
+
+      links.forEach((link) => {
+        const linkId = link.getAttribute('href')?.replace('#', '');
+        link.classList.toggle('is-active', linkId === activeId);
+      });
+
+      if (shouldScroll) {
+        window.requestAnimationFrame(() => {
+          document.getElementById(activeId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+    };
+
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        const id = link.getAttribute('href')?.replace('#', '');
+        if (!skillIds.includes(id)) return;
+        event.preventDefault();
+        history.pushState(null, '', `#${id}`);
+        setActiveSkill(id, true);
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const button = event.target.closest('.skill-home-button');
+      if (!button) return;
+      event.preventDefault();
+      history.pushState(null, '', '#skills');
+      document.querySelector('.skill-index')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    const syncFromHash = () => setActiveSkill(window.location.hash.replace('#', ''), false);
+    window.addEventListener('hashchange', syncFromHash);
+    window.addEventListener('popstate', syncFromHash);
+    syncFromHash();
+  })();
+</script><script data-language-toggle-script="true">
+  (() => {
+    const dictionary = {
+      "故事创作|分镜设计|二维动画|文字表达": "Story Development | Storyboarding | 2D Animation | Writing",
+      "故事创作｜情绪叙事｜二维动画｜文字表达": "Story Development | Emotion-led Storytelling | 2D Animation | Writing",
+      "欢迎来到我的世界。": "Welcome to my world.",
+      "自我介绍": "About Me",
+      "毕业于英国 Teesside University 2D Animation & Stop Motion 专业（Distinction），我的创作重点是用动画讲故事，尤其关注人物情绪、女性成长、社会议题，以及日常生活中细小但真实的感受。": "I graduated with a Distinction from Teesside University, MA 2D Animation & Stop Motion. My work focuses on storytelling through animation, especially character emotion, female growth, social issues, and small but truthful moments from daily life.",
+      "我通常会从一个情绪、一个问题，或一次生活观察开始发展作品。相比单纯追求写实或精致的画面，我更喜欢用抽象化的视觉表达、动漫式的情绪夸张、蒙太奇剪辑和节奏变化，去呈现角色的内心状态，并把这些感受转化成一个完整的故事。": "I often begin with an emotion, a question, or an observation from life. Rather than only pursuing realistic or polished images, I use abstract visual language, expressive animation, montage, and rhythm to turn inner states into complete stories.",
+      "目前，我已独立完成多部手绘动画、定格动画、拼贴动画和二创短片创作。除了动画创作之外，我也拥有 7 年文字内容创作经验，长期进行文字创作、影评、角色分析与ip社群内容运营。这些经历让我更重视叙事、角色和情绪本身，也让我能够通过画面与文字共同讲出有共鸣的故事。": "I have independently completed hand-drawn, stop-motion, collage animation, and fan-made short films. I also have seven years of writing and online content experience, including fiction, reviews, character analysis, and community-based content. These experiences make me value narrative, character, and emotion, and help me tell resonant stories through both images and words.",
+      "目前，我已独立完成多部手绘动画、定格动画、拼贴动画和二创短片创作。除了动画创作之外，我也拥有 7 年文字内容创作经验，长期进行文字创作、影评、角色分析与 IP 社群内容运营。这些经历让我更重视叙事、角色和情绪本身，也让我能够通过画面与文字共同讲出有共鸣的故事。": "I have independently completed hand-drawn, stop-motion, collage animation, and fan-made short films. I also have seven years of writing and online content experience, including fiction, reviews, character analysis, and community-based content. These experiences make me value narrative, character, and emotion, and help me tell resonant stories through both images and words.",
+      "创作方向": "Creative Focus",
+      "故事创作 / 二维动画 / 前期设计 / 分镜设计": "Story development / 2D animation / pre-production / storyboarding",
+      "故事创作 / 二维动画 / 前期设计/ 分镜设计": "Story development / 2D animation / pre-production / storyboarding",
+      "掌握软件": "Software",
+      "AE、Toon Boom Harmony、Adobe Animate、Procreate、Photoshop、CapCut 等。": "After Effects, Toon Boom Harmony, Adobe Animate, Procreate, Photoshop, CapCut, etc.",
+      "AE、Toon Boom Harmony、Adobe Animate、Procreate、Photoshop、capcut等。": "After Effects, Toon Boom Harmony, Adobe Animate, Procreate, Photoshop, CapCut, etc.",
+      "语言": "Language",
+      "雅思听阅 7.5，两年海外生活经验，可进行专业学术交流、写作与项目阐述": "IELTS Listening/Reading 7.5, two years of overseas study experience, able to discuss, write, and present projects in English.",
+      "雅思听阅7.5，两年海外生活经验，可进行专业学术交流、写作与项目阐述": "IELTS Listening/Reading 7.5, two years of overseas study experience, able to discuss, write, and present projects in English.",
+      "关键词": "Keywords",
+      "Storytelling、情绪叙事、女性成长、视觉叙事。": "Storytelling, emotional narrative, female growth, visual storytelling.",
+      "二维逐帧动画": "2D frame-by-frame animation",
+      "剪辑 / 合成": "Editing / Compositing",
+      "剪辑，合成": "Editing / Compositing",
+      "叙事": "Narrative",
+      "定格动画": "Stop-motion animation",
+      "分镜": "Storyboard",
+      "女儿成品设计": "Daughter final design",
+      "女儿设计参考：圆润，少女，q版的线条": "Daughter design reference: rounded, girlish, chibi-inspired lines",
+      "女儿六视图": "Daughter turnaround",
+      "女儿表情设计": "Daughter expression sheet",
+      "母亲成品设计": "Mother final design",
+      "母亲设计参考：《青春变形记》《长发公主》母亲形象": "Mother design references: Turning Red and Tangled mother figures",
+      "气球设计参考": "Balloon design reference",
+      "修改前": "Before revision",
+      "修改后": "After revision",
+      "动画作品": "Animation Projects",
+      "2d逐帧手绘/定格动画/拼贴动画": "2D frame-by-frame / stop-motion / collage animation",
+      "《FAT！》": "FAT!",
+      "2D 逐帧手绘动画 / 女性主义 / 跳脱社会凝视": "2D frame-by-frame animation / feminism / escaping social judgment",
+      "《Annoying likes》": "Annoying Likes",
+      "定格动画 / 同人社交 / 无效社交": "Stop-motion / fan creation / ineffective social interaction",
+      "《坠入梦境的女孩》": "The Girl Falling into Dreams",
+      "拼贴动画 / 梦境蒙太奇 / 自我巡视": "Collage animation / dream montage / self-reflection",
+      "项目收获 / 能力展示": "Project Takeaways / Skills Demonstrated",
+      "《FAT！》不只是一次完整创作，也让我建立了可以带入职场的动画制作方法。": "FAT! was not only a complete independent project, but also helped me build a production workflow I can bring into professional work.",
+      "全流程制作能力": "Full Pipeline Production",
+      "独立完成剧本、分镜、角色设计、逐帧动画、合成、剪辑与发布，理解二维动画从概念到成片的完整流程。": "Independently completed script, storyboard, character design, frame-by-frame animation, compositing, editing, and publishing, with a clear understanding of the full 2D animation pipeline.",
+      "快速自学能力": "Fast Self-learning",
+      "在 4 个月内集中学习并运用 Toon Boom Harmony、After Effects、Procreate、Callipeg 等 4 个专业制作软件，并落实到最终成片。": "Learned and applied Toon Boom Harmony, After Effects, Procreate, and Callipeg within four months, turning software learning into a finished film.",
+      "独立执行能力": "Independent Execution",
+      "从前期到后期均由我独立完成。我学会了拆分任务、安排优先级，并在有限时间内持续推进作品完成。": "Completed the project independently from pre-production to post-production, learning to break down tasks, set priorities, and keep the project moving within a limited timeframe.",
+      "问题解决能力": "Problem Solving",
+      "当复杂画面难以实现时，我重新调整为黑白线条与纹理风格，在降低制作风险的同时强化了情绪表达。": "When complex visuals became difficult to execute, I redesigned the sequence using black-and-white linework and texture, reducing production risk while strengthening emotional impact.",
+      "职业转化能力": "Professional Transferability",
+      "这个项目让我确认，我可以把叙事、软件、执行和复盘能力带入实际项目，参与动画、前期设计与后期相关工作。": "This project confirmed that I can bring narrative thinking, software skills, execution, and reflection into real animation, pre-production, and post-production work.",
+      "回到项目主页 / Back to Projects": "Back to Projects",
+      "制作路径": "Process",
+      "灵感来源": "Inspiration",
+      "人物设计": "Character Design",
+      "故事剧照": "Story Stills",
+      "精选结果": "Selected Results",
+      "回到能力主页 / Back to Skills": "Back to Skills",
+      "其他设计": "Other Design",
+      "表情设计 / 环境设计": "Expression design / Environment design",
+      "个人创作": "Personal Works",
+      "角色插画 / 动画循环练习": "Character illustration / Animation loop practice",
+      "综合 / 文字能力": "General / Writing Skills",
+      "数据展示 / 剧本 / 故事片段 / 观众共鸣": "Data / Scripts / Story excerpts / Audience response",
+      "动画之外，我也持续训练设计、个人创作、剪辑传播和文字表达能力。这里作为项目页之外的补充展示。": "Beyond animation projects, I also train design, personal creation, editing, communication, and writing skills. This section works as supporting evidence outside the main project pages.",
+      "长期进行角色向个人创作，练习动画循环、角色插画等。": "Long-term character-based personal work, including animation loops and character illustration.",
+      "以《驯龙高手》IP为例": "How to Train Your Dragon fan works",
+      "眨眼循环": "Blinking loop",
+      "角色插画": "Character illustration",
+      "动画循环练习": "Animation loop practice",
+      "动画循环练习 01": "Animation loop practice 01",
+      "动画循环练习 02": "Animation loop practice 02",
+      "动画循环练习 03": "Animation loop practice 03",
+      "动画循环练习 04": "Animation loop practice 04",
+      "综合能力": "General Skills",
+      "除了动画创作，我也具备内容传播、剪辑后期、英文沟通和文字表达能力，能够把作品从制作延伸到展示、发布和观众沟通。": "Beyond animation production, I also have skills in content communication, editing, English communication, and writing, helping projects move from making to presentation, publishing, and audience response.",
+      "播放": "views",
+      "点赞": "likes",
+      "浏览": "views",
+      "粉丝": "followers",
+      "剪辑后期": "Editing / post-production",
+      "自媒体运营": "Social media operation",
+      "英语沟通": "English communication",
+      "文字表达": "Writing",
+      "数据截图 01": "Data screenshot 01",
+      "数据截图 02": "Data screenshot 02",
+      "数据截图 03": "Data screenshot 03",
+      "文字表达：故事、观点与观众共鸣。": "Writing: stories, viewpoints, and audience resonance.",
+      "这里保留三类材料：剧本片段、故事片段，以及观众对观点的反馈。重点展示我能用文字建立情绪、角色和共鸣。": "This section includes script excerpts, story excerpts, and audience responses, showing how I use writing to build emotion, character, and resonance.",
+      "剧本片段": "Script Excerpts",
+      "《FAT！》剧本片段展示，补充故事结构、对白节奏和情绪推进。": "Script excerpts from FAT!, showing story structure, dialogue rhythm, and emotional progression.",
+      "故事片段": "Story Excerpts",
+      "放两个文字片段和一个数据反馈，展示我能通过文字建立人物情绪，并让观点被读者理解和回应。": "Two writing excerpts and one data response, showing how I build character emotion through writing and make ideas understandable and responsive.",
+      "观众共鸣": "Audience Response",
+      "放认同观点、产生讨论或表达共鸣的评论截图，展示我能抓住观众的情绪痛点，并把想法写成能被回应的表达。": "Comments that agree, discuss, or resonate with my ideas, showing my ability to identify emotional pain points and turn them into writing that receives response.",
+      "创作总结": "Creative Summary",
+      "我的创作始终围绕故事和情绪展开。相比单纯展示画面技巧，我更关注一个情绪如何被发展成角色、场景、节奏和完整的动画表达。": "My work always centers on story and emotion. Rather than only displaying visual technique, I care about how an emotion can develop into character, scene, rhythm, and a complete animated expression.",
+      "在不同媒介中，我尝试用手绘、拼贴、定格、抽象画面、动漫式表现和蒙太奇节奏去讲述人物的内心状态与现实中的细微感受。文字创作经验也让我更重视叙事逻辑、角色理解和情感表达。": "Across different media, I use hand-drawn animation, collage, stop-motion, abstraction, anime-inspired expression, and montage rhythm to tell inner states and subtle real-life emotions. My writing experience also makes me value narrative logic, character understanding, and emotional expression.",
+      "我希望继续成为一名以故事为核心的动画创作者，用视觉和文字讲出有情绪、有观点、也有共鸣的作品。": "I hope to continue becoming a story-driven animation creator, using both visuals and writing to make work with emotion, perspective, and resonance.",
+      "Animation Portfolio / Jiarun Li": "Animation Portfolio / Jiarun Li",
+      "电话：18665863526": "Phone: 18665863526",
+      "Wechat：Jessicapinejr": "WeChat: Jessicapinejr",
+      "（蒙太奇）质疑的话语像锁链一样捆住主角": "Montage: critical words wrap around the protagonist like chains",
+      "“取关”后的轻松": "Relief after unfollowing",
+      "《FAT！》的后期重点不是堆复杂效果，而是用 Toon Boom Harmony、After Effects 和剪辑软件补足画面质感、运动和情绪层次，让简单画风更有完成度。": "The post-production of FAT! focuses not on stacking complex effects, but on using Toon Boom Harmony, After Effects, and editing tools to strengthen texture, motion, and emotional layers.",
+      "《FAT！》的灵感来自一次我和母亲关于体重的日常对话。她本意是关心我，但那些随口的评价给我带来了很大的压力，也让我开始思考：为什么女性总是这么在意自己是否被别人注视和评价？": "FAT! was inspired by an everyday conversation with my mother about weight. Although her intention was care, casual comments created pressure and made me question why women are so often made aware of being watched and judged.",
+      "《FAT！》的人物设计非常直接，也带有很强的个人经验。因为故事本身来自我的生活，所以女儿和母亲的视觉参考也分别来自我和我的母亲。": "The character design of FAT! is direct and strongly rooted in personal experience. Because the story comes from my own life, the daughter and mother were visually referenced from myself and my mother.",
+      "《FAT！》剧本片段展示": "FAT! script excerpt",
+      "《Fat!》是一部时长4分57秒的独立2D动画短片。": "FAT! is a 4-minute-57-second independent 2D animated short film.",
+      "01 调研 / 情绪来源": "01 Research / Emotional Source",
+      "01 灵感与道具隐喻": "01 Inspiration / Prop Metaphor",
+      "02 调研": "02 Research",
+      "02 视觉系统": "02 Visual System",
+      "03 分镜": "03 Storyboard",
+      "03 实拍素材": "03 Live-action Material",
+      "04 成片精选": "04 Selected Final Clips",
+      "10K+播放 / 60+评论": "10K+ views / 60+ comments",
+      "4个月": "4 months",
+      "7K+播放 / 500+点赞": "7K+ views / 500+ likes",
+      "AE 合成界面": "After Effects compositing workspace",
+      "After Effects 视觉合成": "After Effects visual compositing",
+      "Bilibili 链接：": "Bilibili link:",
+      "Result / 最终动画效果": "Result / Final animation",
+      "Toon Boom Harmony 质感处理": "Texture processing in Toon Boom Harmony",
+      "把“在意他人评价”转成梦境冒险，让心理压力具象化。": "I turned the pressure of caring about other people's opinions into a dream adventure, making psychological pressure visible.",
+      "表达被取关的落寞": "Expressing the loneliness after being unfollowed",
+      "成绩：": "Grade:",
+      "创作周期：": "Production period:",
+      "当她飞到最高点，俯瞰着渺小的地球后，她发现自己：“我真是太棒了！”": "When she reaches the highest point and looks down at the tiny Earth, she realizes: I am amazing.",
+      "调研 / 情绪来源": "Research / Emotional Source",
+      "调研证据 / Research": "Research evidence",
+      "调整视觉方案：以黑白为基调，突出焦虑情绪": "Visual adjustment: using black and white to emphasize anxiety",
+      "对于“是否回关”的纠结，以恶魔与天使呈现": "The dilemma of whether to follow back is shown through an angel-and-devil image",
+      "对于需要大幅运动、光效和空间变化的画面，我使用 After Effects 完成合成、叠加和节奏调整，使画面更有流动感和情绪推进。": "For shots requiring strong motion, lighting, and spatial change, I used After Effects for compositing, layering, and rhythm adjustment.",
+      "独立制作｜": "Independent production |",
+      "故事策划｜道具制作｜定格拍摄｜剪辑后期": "Story planning | prop making | stop-motion shooting | editing and post-production",
+      "故事方向｜拼贴视觉｜实拍素材｜场景设计｜剪辑后期": "Story direction | collage visuals | live-action material | scene design | editing and post-production",
+      "剧本｜分镜｜角色设计｜动画｜后期": "Script | storyboard | character design | animation | post-production",
+      "分镜": "Storyboard",
+      "概念设计 01：宇宙": "Concept design 01: universe",
+      "概念设计 02：城市上空": "Concept design 02: above the city",
+      "概念设计 03：云层": "Concept design 03: clouds",
+      "概念设计图": "Concept Designs",
+      "个人小说片段": "Personal fiction excerpt",
+      "故事剧照": "Story Stills",
+      "故事围绕一名名叫杰西卡的年轻女孩展开，她在视频通话中因身材遭到母亲的批评。母亲的严厉评判使她产生了严重的身体形象焦虑，并让她的内心世界发生了深刻的变化。": "The story follows Jessica, a young girl who is criticized by her mother about her body during a video call. Her mother's harsh judgment triggers body image anxiety and deeply changes her inner world.",
+      "怪诞的幻想": "Strange fantasy",
+      "观众反馈。": "Audience feedback.",
+      "观众共鸣 01": "Audience response 01",
+      "观众共鸣 02": "Audience response 02",
+      "观众共鸣 03": "Audience response 03",
+      "光效 / 运动效果": "Lighting / motion effects",
+      "合成剪辑": "Compositing and Editing",
+      "黑白的基础上，增加画面磨砂与抖动效果": "Adding grain and jitter to the black-and-white visuals",
+      "黑白方案调整": "Black-and-white visual adjustment",
+      "黑白线条质感": "Black-and-white line texture",
+      "后来我花了两周重新收集参考，包括《哈利·波特3》里的气球场景和真实的人形气球。": "I then spent two weeks collecting new references, including the balloon scene from Harry Potter and real human-shaped balloons.",
+      "互相“欣赏”对方的产出，但是其实放食物的容器并不对（不合口味）": "They appear to appreciate each other's work, but the container does not really match their taste.",
+      "画面更简单，但焦虑和压迫感更强。": "The image became simpler, but the anxiety and pressure became stronger.",
+      "环境设计": "Environment Design",
+      "剪辑时间线 / 成片整理": "Editing timeline / final assembly",
+      "剪辑与成片整理": "Editing and final assembly",
+      "节省了大部分时间的同时情绪更深刻": "It saved production time while making the emotion stronger.",
+      "剧照 01：被说胖后的表情变化": "Still 01: facial change after being called fat",
+      "剧照 02：母亲的随意评价": "Still 02: the mother's casual judgment",
+      "剧照 03：动漫手法表达母女冲突": "Still 03: anime-style expression of conflict",
+      "剧照 04：女儿失落的光影变化": "Still 04: lighting change showing the daughter's sadness",
+      "剧照 05：气球漂浮上空": "Still 05: balloon floating upward",
+      "剧照 06：女儿化成超新星": "Still 06: the daughter becomes a supernova",
+      "灵感来源：各类型的母女关系": "Inspiration: different mother-daughter relationships",
+      "蒙太奇转场": "Montage transition",
+      "梦幻世界": "Dreamlike world",
+      "母亲表情设计": "Mother expression sheet",
+      "母亲的设计重点是压迫感。": "The mother's design focuses on pressure and control.",
+      "母亲六视图 /": "Mother turnaround",
+      "母亲设计": "Mother Design",
+      "女儿的初始造型基于我自己的造型。": "The daughter's initial design was based on my own visual style.",
+      "拍摄芭蕾动作与角色素材，让拼贴画面有真实身体基础。": "I filmed ballet movements and character material so the collage visuals would have a real physical foundation.",
+      "片段试读": "Excerpt preview",
+      "项目类型：": "Project type:",
+      "气球设计": "Balloon Design",
+      "气球设计参考：《哈利波特与阿兹卡班的囚徒》": "Balloon design reference: Harry Potter and the Prisoner of Azkaban",
+      "气球形态是这个项目里最重要的设计之一。": "The balloon form is one of the most important designs in this project.",
+      "气球修改后": "Balloon after revision",
+      "气球修改前": "Balloon before revision",
+      "气球循环测试1": "Balloon loop test 1",
+      "气球循环测试2": "Balloon loop test 2",
+      "气球循环测试3": "Balloon loop test 3",
+      "情绪板": "Moodboard",
+      "确定黑白拼贴、现实素材和舞台感空间，并将视觉参考转化为最终画面。": "I defined a black-and-white collage style, real-life materials, and stage-like spaces, then translated visual references into final images.",
+      "人物逐渐陷入幻想": "The character gradually falls into fantasy",
+      "色彩灵感：电影《从二十一世纪撤离》的末日色彩": "Color inspiration: apocalyptic colors from Escape from the 21st Century",
+      "实拍素材 / 动作采集": "Live-action material / motion capture",
+      "食物与玩具隐喻 / Inspiration": "Food and toy metaphor / Inspiration",
+      "使用软件": "Software Used",
+      "使用软件组合": "Software combination",
+      "视觉参考": "Visual Reference",
+      "数据反馈": "Data feedback",
+      "所以我在视觉上强化了她尖锐的表情、冷淡的眼神和较深的法令纹，让她看起来更严厉、更有压迫感。": "I emphasized her sharp expression, cold gaze, and deeper smile lines to make her feel stricter and more oppressive.",
+      "她是复杂的人物，是一个以“为你好”为理由、习惯掌控女儿的角色。": "She is a complex character who controls her daughter under the reason of doing it for your own good.",
+      "文字片段 01": "Writing excerpt 01",
+      "文字片段 02": "Writing excerpt 02",
+      "问卷与访谈确认：这不是个人感受，而是创作者社群里常见的压力。": "Questionnaires and interviews confirmed that this was not only my personal feeling, but a common pressure among creators.",
+      "我把不同创作者的产出想成不同食物：萝卜白菜，各有所爱。每个作者是不同的食物容器，而这些不同风味的食物就是ta们的产出。有些人喜欢吃中餐，有些人喜欢吃西餐，如同大家喜欢看的同人作品口味都不一样。": "I imagined different creators' works as different foods: everyone has their own taste. Each creator becomes a different food container, and each flavor represents their output.",
+      "我没有继续堆复杂画面，而是重新判断这一段真正需要表达的情绪：被评价后的压迫感、自我怀疑，以及角色内心被放大的声音。": "Instead of adding more complex visuals, I reconsidered what this sequence truly needed to express: pressure after being judged, self-doubt, and amplified inner voices.",
+      "我希望观众能感受到：她们是母女，某些地方相似，但性格、气质和表达方式又完全不同。": "I wanted the audience to feel that they are mother and daughter: similar in some ways, but completely different in personality, temperament, and expression.",
+      "我想通过这个故事表达：当女性飞得更高、更远，拥有更大的视角时，那些原本困住自己的社会标准和外界评价，也会慢慢失去力量。女性的力量不来自迎合别人的标准，而是跳脱出社会评价体系，这样才能飞得更高、更远。": "Through this story, I wanted to express that when women fly higher and see from a wider perspective, the social standards and external judgments that once trapped them gradually lose their power.",
+      "我用黑白拼贴、实拍素材和后期合成，表现角色被他人评价影响后的心理空间，让抽象的自我怀疑变成可被观看的梦境冒险。": "I used black-and-white collage, live-action footage, and post-production compositing to turn self-doubt into a visible dream adventure.",
+      "我用食物和玩具道具代替不同类型的作品与创作者：萝卜白菜，各有所爱。这个隐喻让“审美偏好”和“社交压力”变得更轻松、直观，也更适合用定格动画呈现。": "I used food and toy props to represent different works and creators. This metaphor made taste differences and social pressure easier to understand through stop-motion.",
+      "我在她的头发上加入了螺旋线，让角色看起来更圆润、更蓬松，也提前暗示她之后会变成气球。": "I added spiral shapes to her hair to make her feel rounder and softer, while also foreshadowing her later transformation into a balloon.",
+      "效果设置 / 节点与时间线": "Effect setup / nodes and timeline",
+      "叙事节奏 / Storyboard": "Narrative rhythm / Storyboard",
+      "颜色上，我使用了深棕色和军绿色，与女儿明亮柔和的配色形成对比。": "For the mother, I used dark brown and army green to contrast with the daughter's lighter and softer palette.",
+      "颜色上，我选择了金色、浅粉色和浅蓝色。这些颜色让角色看起来更轻、更柔软，也带有一种逐渐“膨胀”的感觉。": "For the daughter, I chose gold, light pink, and light blue to make her feel lighter, softer, and gradually inflated.",
+      "一个月": "1 month",
+      "因此，我将这一段调整为黑白高对比风格，用更少的线条、更强的黑色空间和少量红色元素，让情绪变得更集中。": "So I changed this part into a high-contrast black-and-white style, using fewer lines, stronger black space, and small red elements to concentrate the emotion.",
+      "用故事板控制互动节奏，让小物件也能承担叙事推进。": "I used storyboards to control the rhythm of interaction so small objects could carry the narrative.",
+      "有趣片段": "Playful moment",
+      "于是我想：如果女性跳脱出社会评价呢？没有人会说总统的胖瘦，大家只会说：ta是一位总统。所以，这种焦虑给我带来了灵感：当一个女孩在被贴上“胖”的标签后，真的变得越来越膨胀，最后像气球一样飞向了宇宙后会发生什么？": "I wondered: what if women stepped outside social judgment? No one talks about a president's body shape; they talk about being a president. This anxiety inspired the idea of a girl literally inflating after being labeled fat and floating into space.",
+      "原本设想：家具融化成彩色的色彩": "Original idea: furniture melting into colorful forms",
+      "原方案过于复杂，影响完成度。": "The original plan was too complex and affected completion quality.",
+      "在黑白段落中，我使用 Animated Pencil Texture 和 Grain 为线条增加颗粒感，让简单线稿更接近手绘质感，也强化被评价后的不安情绪。": "For the black-and-white section, I used Animated Pencil Texture and Grain to add a handmade texture to simple linework and strengthen the unease after being judged.",
+      "找回勇气": "Finding courage",
+      "这次修改让我意识到，角色设计不能只看局部，而要考虑整个形体是否符合故事和动作需要。": "This revision taught me that character design cannot only focus on facial detail; the whole form must serve the story and movement.",
+      "这个项目作为辅助作品，主要展示我能用实验影像、实拍素材和后期合成表达人物心理，也为我的2D动画项目铺垫了基础，发掘出我擅长运用情绪的特长。": "As a supporting project, this work shows my ability to use experimental imagery, live-action footage, and compositing to express inner psychology. It also helped me discover my strength in emotional storytelling.",
+      "制作到中段时，我发现原本设想的幻想场景过于复杂。如果继续沿用原方案，画面完成度和制作进度都会受到影响。": "Halfway through production, I realized the fantasy scene was too complex. Continuing with the original plan would affect both visual completion and schedule.",
+      "主要使用 Toon Boom Harmony、After Effects、Procreate / Callipeg 和剪映完成动画绘制、质感处理、合成与剪辑整理。": "I mainly used Toon Boom Harmony, After Effects, Procreate / Callipeg, and Jianying for animation drawing, texture processing, compositing, and editing.",
+      "转向黑白高对比视觉方案。": "Shifted to a high-contrast black-and-white visual approach.",
+      "最初的气球设计并不成功，因为我太关注角色的脸部表情，却忽略了气球本身应该是一个完整、圆润、轻盈、漂浮的整体。": "The first balloon design did not work because I focused too much on the face and ignored that the balloon needed to feel complete, rounded, light, and floating.",
+      "最后，我重新调整了气球的整体轮廓，让它更贴合女儿的角色，也更符合“膨胀、漂浮、失控”的视觉感受。": "Finally, I adjusted the overall silhouette so the balloon better matched the daughter and expressed inflation, floating, and loss of control.",
+      "最后在剪映中整理镜头顺序、节奏和成片输出，让故事从对话、膨胀、失控到释放形成清楚的情绪推进。": "Finally, I organized shot order, rhythm, and output in Jianying, making the emotional progression from dialogue to inflation, loss of control, and release clear.",
+      "最终视觉呈现": "Final visual presentation",
+      "成片：": "Full film:",
+      "可面试展示": "Available to show during interview",
+      "《Annoying Likes》是一部关于同人创作、社交压力和无效互动的定格动画短片。": "Annoying Likes is a stop-motion short about fan creation, social pressure, and ineffective interaction.",
+      "《FAT！》剧本片段 01": "FAT! script excerpt 01",
+      "《FAT！》剧本片段 02": "FAT! script excerpt 02",
+      "《坠入梦境的女孩》讲述一个芭蕾女孩在梦境中冒险，并逐渐找回勇气和自我的故事。": "The Girl Falling into Dreams tells the story of a ballet girl who goes on an adventure in a dream and gradually regains courage and selfhood.",
+      "Jessica Li / 李佳润": "Jessica Li / Jiarun Li",
+      "表情设计": "Expression Design",
+      "表情设计 01": "Expression design 01",
+      "表情设计 02": "Expression design 02",
+      "点击观看完整作品": "Watch full film",
+      "抖音：": "Douyin:",
+      "更多能力": "Additional Skills",
+      "李佳润": "Jiarun Li",
+      "女儿设计": "Daughter Design",
+      "拼贴动画 / Collage Animation": "Collage Animation",
+      "在思考过后，我意识到，这是女性从古至今被社会规训的结果，因为整个社会都会对女性的外貌作出评价。": "After reflecting on it, I realized that this anxiety comes from long-term social discipline toward women, because society constantly evaluates women's appearance."
+    };
+
+    const shouldSkip = (node) => {
+      const parent = node.parentElement;
+      return !parent || parent.closest('script, style, noscript, svg, canvas');
+    };
+
+    const originalText = new WeakMap();
+
+    const translateTextNodes = (lang) => {
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+
+      nodes.forEach((node) => {
+        if (shouldSkip(node)) return;
+        if (!originalText.has(node)) originalText.set(node, node.nodeValue);
+        const original = originalText.get(node);
+        if (lang === 'zh') {
+          node.nodeValue = original;
+          return;
+        }
+        const trimmed = original.trim();
+        const translated = dictionary[trimmed];
+        if (!translated) return;
+        node.nodeValue = original.replace(trimmed, translated);
+      });
+    };
+
+    const setLanguage = (lang) => {
+      const next = lang === 'en' ? 'en' : 'zh';
+      document.documentElement.lang = next === 'en' ? 'en' : 'zh-CN';
+      document.body.dataset.lang = next;
+      localStorage.setItem('portfolio-lang', next);
+      translateTextNodes(next);
+    };
+
+    const button = document.querySelector('[data-lang-toggle]');
+    button?.addEventListener('click', () => {
+      setLanguage(document.body.dataset.lang === 'en' ? 'zh' : 'en');
+    });
+
+    setLanguage(localStorage.getItem('portfolio-lang') || 'zh');
+  })();
+</script><script data-portfolio-lightbox-script="true">
+  (() => {
+    const ensureLightbox = () => {
+      let box = document.querySelector('.portfolio-lightbox');
+      if (box) return box;
+
+      box = document.createElement('div');
+      box.className = 'portfolio-lightbox';
+      box.innerHTML = `
+        <div class="portfolio-lightbox-panel" role="dialog" aria-modal="true" aria-label="作品图片放大预览">
+          <button class="portfolio-lightbox-close" type="button" aria-label="关闭">×</button>
+          <div class="portfolio-lightbox-content"></div>
+          <p class="portfolio-lightbox-caption"></p>
+        </div>`;
+      document.body.appendChild(box);
+      return box;
+    };
+
+    const lightbox = ensureLightbox();
+    const content = lightbox.querySelector('.portfolio-lightbox-content');
+    const caption = lightbox.querySelector('.portfolio-lightbox-caption');
+    const closeButton = lightbox.querySelector('.portfolio-lightbox-close');
+
+    const getCaption = (target) => {
+      const media = target.matches('img, video') ? target : target.querySelector('img, video');
+      if (media?.alt) return media.alt;
+      const cardCaption = target.closest('.still-card, .about-photo-card, .writing-piece')?.querySelector('p, h4, .still-caption, .about-photo-note');
+      if (cardCaption?.textContent?.trim()) return cardCaption.textContent.trim();
+      return target.textContent.trim().replace(/\s+/g, ' ');
+    };
+
+    const openLightbox = (target) => {
+      const media = target.matches('img, video') ? target : target.querySelector('img, video');
+      content.innerHTML = '';
+
+      if (media) {
+        const clone = media.cloneNode(true);
+        if (clone.tagName === 'VIDEO') {
+          clone.controls = true;
+          clone.autoplay = true;
+          clone.muted = true;
+          clone.loop = true;
+          clone.playsInline = true;
+        }
+        content.appendChild(clone);
+      } else {
+        const placeholder = document.createElement('div');
+        placeholder.className = 'portfolio-lightbox-placeholder';
+        placeholder.textContent = target.textContent.trim() || '图片位置';
+        content.appendChild(placeholder);
+      }
+
+      caption.textContent = getCaption(target);
+      lightbox.classList.add('is-open');
+      document.body.classList.add('lightbox-open');
+      closeButton.focus();
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.remove('is-open');
+      document.body.classList.remove('lightbox-open');
+      content.innerHTML = '';
+      caption.textContent = '';
+    };
+
+    document.addEventListener('click', (event) => {
+      const target = event.target.closest('.image-placeholder, .about-photo img, main img, main video');
+      if (!target || lightbox.contains(target)) return;
+      event.preventDefault();
+      openLightbox(target);
+    });
+
+    lightbox.addEventListener('click', (event) => {
+      if (event.target === lightbox || event.target === closeButton) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && lightbox.classList.contains('is-open')) closeLightbox();
+    });
+  })();
+</script>
+<script data-muted-media-script="true">
+  (() => {
+    const muteVideo = (video) => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.volume = 0;
+      video.loop = true;
+      video.playsInline = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('loop', '');
+      video.setAttribute('playsinline', '');
+    };
+
+    document.querySelectorAll('video').forEach(muteVideo);
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType !== 1) return;
+          if (node.matches?.('video')) muteVideo(node);
+          node.querySelectorAll?.('video').forEach(muteVideo);
+        });
+      });
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+  })();
+</script>
+</body>
+</html>
